@@ -118,7 +118,7 @@ El procés d’adhesió o **onboarding** compta amb **dues parts diferenciades**
   L’entitat genera una sol·licitud que serà gestionada per l’administració de governança de l’ESDATIB.  
 
 ### 2. Part amb desplegament dels agents
-- En aquesta fase ja és necessari **desplegar els agents al cluster** per poder accedir a l’espai de dades i obtenir les credencials corresponents.
+- En aquesta fase ja és necessari **desplegar els agents al cluster** per poder accedir als seus serveis i obtenir les credencials corresponents.
 
 Consulta la **[Guia de procés d’adhesió](OnBoarding/README.md)**.
 
