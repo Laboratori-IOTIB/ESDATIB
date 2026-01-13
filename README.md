@@ -2,7 +2,7 @@
 - [Objectius principals](#objectius-principals)
 - [Arquitectura i marc tecnològic](#arquitectura-i-marc-tecnològic)
   - [Agents](#agents)
-- [Recursos i infraestructura](#recursos-i-infraestructura)
+- [Recursos e infraestructura](#recursos-i-infraestructura)
   - [Altres requisits necessaris per al desplegament dels mòduls en el clúster](#altres-requisits-necessaris-per-al-desplegament-dels-mòduls-en-el-clúster)
   - [Requisits del clúster](#requisits-del-clúster)
     - [Requisits Experimental](#requisits-experimental)
