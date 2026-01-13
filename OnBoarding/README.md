@@ -52,6 +52,6 @@ Els passos següents requereixen **desplegament dels agents al clúster**.
 > ⚠️ Proximament operatiu.
 - En aquesta fase ja és necessari **desplegar els agents al clúster** per poder accedir a l’espai de dades i obtenir les credencials corresponents.  
 
-Consulta la **[Guia de procés desplegament Agents](ESDATIB/Desplegament/Readme.md)**.
+Consulta la **[Guia de procés desplegament Agents](../Desplegament/Readme.md)**.
 
 
