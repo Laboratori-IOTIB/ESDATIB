@@ -111,4 +111,15 @@ Actualment, l’espai es troba en una fase primigènia i els requisits es manten
 
 ## Procés d’adhesió a l’ESDATIB
 
-*(Incloure aquí els passos per sol·licitar l’adhesió, desplegar COMMON, agents, configuració inicial, i validació per part de l’administració.)*
+El procés d’adhesió o **onboarding** compta amb **dues parts diferenciades**:
+
+### 1. Part sense necessitat de desplegament ni configuració
+- Sol·licitud d’integració a l’ESDATIB:  
+  L’entitat genera una sol·licitud que serà gestionada per l’administració de governança de l’ESDATIB.  
+
+### 2. Part amb desplegament dels agents
+- En aquesta fase ja és necessari **desplegar els agents al cluster** per poder accedir a l’espai de dades i obtenir les credencials corresponents.
+
+Consulta la **[Guia de procés d’adhesió](OnBoarding/README.md)**.
+
+
