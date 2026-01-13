@@ -75,7 +75,7 @@ Aquest paquet és necessari **una sola vegada per entitat**, i no per cada agent
 
 ---
 
-## Recursos i infraestructura
+## Recursos e infraestructura
 
 L’arquitectura **SIMPL OPEN** ha estat desenvolupada amb la intenció de ser desplegada en un **cluster de Kubernetes**.  
 Per aquest motiu, qualsevol entitat que vulgui adherir-se a l’ESDATIB i accedir a l’espai de dades haurà de disposar d’un **cluster de Kubernetes** operatiu on fer el desplegament.  
