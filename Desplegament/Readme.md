@@ -51,17 +51,9 @@ En tots els casos, el desplegament amb **ArgoCD** segueix el mateix procediment:
 
 ### Arxiu YAML del paquet COMMON
 
-El paquet **COMMON** inclou tots els recursos bàsics necessaris per al correcte funcionament dels agents dins de l’espai de dades:
-
-- Secrets generals i credencials compartides
-- Configuració de xarxa i serveis comuns
-- Rutes i ingressos necessaris per als agents
-
-> ⚠️ Aquest paquet només s’ha de desplegar **una vegada per entitat**.
 
 ### Passos posteriors al desplegament del COMMON
 
-*(Detallar aquí les verificacions, configuracions addicionals o accions necessàries després del desplegament del COMMON.)*
 
 ---
 
@@ -69,16 +61,11 @@ El paquet **COMMON** inclou tots els recursos bàsics necessaris per al correcte
 
 ### Arxiu YAML del paquet PROVIDER
 
-L’agent **PROVIDER** permet oferir dades dins de l’ESDATIB. La seva configuració inclou:
 
-- Volums persistents per a les dades compartides
-- Serveis i ingressos per accedir als recursos
-- Configuració de permisos i seguretat
-- Integració amb el paquet **COMMON**
 
 ### Passos posteriors al desplegament del PROVIDER
 
-*(Detallar aquí les accions necessàries per validar i activar l’agent PROVIDER.)*
+
 
 ---
 
@@ -86,15 +73,9 @@ L’agent **PROVIDER** permet oferir dades dins de l’ESDATIB. La seva configur
 
 ### Arxiu YAML del paquet CONSUMER
 
-L’agent **CONSUMER** permet accedir i consumir dades dins de l’ESDATIB. La seva configuració inclou:
 
-- Serveis i rutes per connectar amb els agents **PROVIDER**
-- Permisos i credencials d’accés a les dades
-- Configuració de *logging* i monitorització
-- Integració amb el paquet **COMMON**
 
 ### Passos posteriors al desplegament del CONSUMER
 
-*(Detallar aquí les accions necessàries per validar l’accés i el consum de dades.)*
 
 ---
