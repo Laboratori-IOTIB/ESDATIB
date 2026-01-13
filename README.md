@@ -1,5 +1,3 @@
-# Taula de continguts
-
 - [ESDATIB – Espai de Dades Turístiques de les Illes Balears](#esdatib--espai-de-dades-turistiques-de-les-illes-balears)
 - [Objectius principals](#objectius-principals)
 - [Arquitectura i marc tecnològic](#arquitectura-i-marc-tecnològic)
