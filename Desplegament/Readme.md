@@ -18,7 +18,7 @@
 
 ## Instal·lació d’ArgoCD
 
-*(En aquesta secció s’haurà d’incloure la guia d’instal·lació d’ArgoCD al clúster de Kubernetes, si escau.)*
+*(En aquesta secció s’haurà d’incloure la guia d’instal·lació d’ArgoCD al clúster de Kubernetes)*
 
 ## Instruccions per desplegar aplicació
 
