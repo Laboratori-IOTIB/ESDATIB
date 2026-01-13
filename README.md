@@ -14,7 +14,8 @@
   <img src="Imatges/LG_CH.png" alt="Diagrama de l’ESDATIB" height="70">
   &nbsp;&nbsp;&nbsp;
   <img src="Imatges/logo_fueib_uib.png" alt="Logos FEUIB i UIB" height="70">
-  &nbsp;&nbsp;&nbsp;&nbsp;
+</p>
+<p align="center">
   <img src="Imatges/espai cotib.png" alt="Logo Espai COTIB" height="70">
   &nbsp;&nbsp;&nbsp;
   <img src="Imatges/logo-CTIG.png" alt="Logo CTIG" height="80">
