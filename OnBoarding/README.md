@@ -27,6 +27,7 @@ L’entitat ha de completar el formulari de sol·licitud a:
 </p>
 
 Un cop completat el formulari i generades les credencials, l’usuari serà redirigit a un portal de sessió on podrà iniciar sessió amb les credencials recents.
+[https://authority.fe.authority01.ibtourismdataspace.org/onboarding/application/additional-request](https://authority.fe.authority01.ibtourismdataspace.org/onboarding/application/additional-request)
 
 **Pujar ID i submit application request:**  
 En aquest portal, l’entitat ha de pujar un fitxer `ID.pdf` i fer clic a **Submit Application Request**.  
