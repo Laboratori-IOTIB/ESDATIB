@@ -83,10 +83,6 @@ Tot i això, el primer pas de sol·licitud d’adhesió a l’espai de dades **n
 
 Es recomana utilitzar un **servei cloud**, ja que facilita el desplegament i el manteniment. L’equip de l’ESDATIB ha utilitzat el servei de **Azure**, que és on es pot oferir més suport.
 
-### Altres requisits necessaris per al desplegament dels mòduls al clúster
-
-- **DNS / Hostname**  
-  Cada entitat necessita un **domini** que s’utilitzarà com a base per crear les adreces dels diferents serveis dels agents dins de l’espai de dades.
 
 ### Requisits del clúster
 
@@ -104,6 +100,10 @@ Actualment, l’espai es troba en una fase primigènia i els requisits es manten
 
 > ⚠️ PROXIMAMENT
 
+### Altres requisits necessaris per al desplegament dels mòduls al clúster
+
+- **DNS / Hostname**  
+  Cada entitat necessita un **domini** que s’utilitzarà com a base per crear les adreces dels diferents serveis dels agents dins de l’espai de dades.
 ---
 
 ## Procés d’adhesió a l’ESDATIB
