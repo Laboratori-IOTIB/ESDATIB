@@ -66,7 +66,7 @@ SIMPL OPEN es fonamenta en una estructura d’agents, on cadascun pot desenvolup
 - **AUTHORITY**: Agent encarregat de la governança i supervisió de l’espai de dades. Gestiona permisos, polítiques d’accés i assegura el compliment de normes i regulacions.
 
 En aquest cas, l’**agent de governança (AUTHORITY)** es desplegat per l’administració de l’ESDATIB.  
-Qualsevol altra entitat que vulgui adherir-se necessitarà desplegar els agents corresponents a les accions que desitgi realitzar, sent necessari disposar dels agents **CONSUMER** i **PROVIDER** per poder pujar i accedir a les dades dins de l’espai.
+Qualsevol altra entitat que vulgui adherir-se necessitarà desplegar els agents corresponents a les accions que desitgi realitzar, sent necessari disposar dels agents **CONSUMER** i **PROVIDER** per poder accedir i pujar a les dades dins de l’espai.
 
 A part dels agents principals, que permeten realitzar accions actives dins de l’espai, cada entitat necessita abans desplegar un **paquet comú**, anomenat **COMMON**.  
 Aquest paquet és necessari **una sola vegada per entitat**, i no per cada agent, i conté les configuracions i recursos bàsics que permeten que els agents funcionin correctament dins de l’ESDATIB.
