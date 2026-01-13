@@ -105,7 +105,7 @@ Actualment, l’espai es troba en una fase primigènia i els requisits es manten
 
 #### Requisits Producció
 
-*(Incloure aquí els requisits per a entorns de producció, per exemple: dimensions de cluster, seguretat, backups, alta disponibilitat, monitorització, etc.)*
+> ⚠️ PROXIMAMENT
 
 ---
 
