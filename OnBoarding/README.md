@@ -1,4 +1,4 @@
-## Procés complet d’adhesió a l’espai de dades
+## Procés complet d’adhesió a l’ESDATIB
 
 El procés d’adhesió és necessari **per a cada agent** (CONSUMER o PROVIDER).  
 Com que el procés està dividit en parts diferenciades, és possible realitzar la **primera part abans del desplegament o configuració del clúster**.
