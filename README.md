@@ -2,8 +2,8 @@
 - [Objectius principals](#objectius-principals)
 - [Arquitectura i marc tecnològic](#arquitectura-i-marc-tecnològic)
   - [Agents](#agents)
-- [Recursos e infraestructura](#recursos-e-infraestructura)
-  - [Altres requisits necessaris per al desplegament dels mòduls en el clúster](#altres-requisits-necessaris-per-al-desplegament-dels-mòduls-en-el-clúster)
+- [Recursos i infraestructura](#recursos-i-infraestructura)
+  - [Altres requisits necessaris per al desplegament dels mòduls al clúster](#altres-requisits-necessaris-per-al-desplegament-dels-mòduls-al-clúster)
   - [Requisits del clúster](#requisits-del-clúster)
     - [Requisits Experimental](#requisits-experimental)
     - [Requisits Producció](#requisits-producció)
@@ -21,14 +21,11 @@
   <img src="Imatges/logo-CTIG.png" alt="Logo CTIG" height="80">
 </p>
 
-
-
-
 # ESDATIB – Espai de Dades Turístiques de les Illes Balears
 
 Web oficial: https://ibtourismdataspace.org/
 
-L’**ESDATIB (Espai de Dades Turístiques de les Illes Balears)** és una iniciativa orientada a centralitzar, visualitzar i facilitar l’accés a dades turístiques rellevants de les Illes Balears. Està pensat per donar servei a la comunitat, al teixit empresarial i a les administracions públiques, promovent un ús eficient, segur i interoperable de les dades.
+L’**ESDATIB (Espai de Dades Turístiques de les Illes Balears)** és una iniciativa orientada a centralitzar, visualitzar i facilitar l’accés a dades turístiques rellevants de les Illes Balears. Està pensada per donar servei a la comunitat, al teixit empresarial i a les administracions públiques, promovent un ús eficient, segur i interoperable de les dades.
 
 Aquest repositori inclou els components i la documentació necessaris perquè les entitats puguin integrar-se i adherir-se a l’ESDATIB.
 
@@ -65,8 +62,8 @@ SIMPL OPEN es fonamenta en una estructura d’agents, on cadascun pot desenvolup
 - **PROVIDER**: Agent que ofereix i comparteix dades dins de l’espai. Garantitza que les dades siguin accessibles, actualitzades i documentades segons els estàndards de l’ESDATIB.
 - **AUTHORITY**: Agent encarregat de la governança i supervisió de l’espai de dades. Gestiona permisos, polítiques d’accés i assegura el compliment de normes i regulacions.
 
-En aquest cas, l’**agent de governança (AUTHORITY)** es desplegat per l’administració de l’ESDATIB.  
-Qualsevol altra entitat que vulgui adherir-se necessitarà desplegar els agents corresponents a les accions que desitgi realitzar, sent necessari disposar dels agents **CONSUMER** i **PROVIDER** per poder accedir i pujar a les dades dins de l’espai.
+En aquest cas, l’**agent de governança (AUTHORITY)** és desplegat per l’administració de l’ESDATIB.  
+Qualsevol altra entitat que vulgui adherir-se necessitarà desplegar els agents corresponents a les accions que desitgi realitzar, sent necessari disposar dels agents **CONSUMER** i **PROVIDER** per poder accedir i pujar dades dins de l’espai.
 
 A part dels agents principals, que permeten realitzar accions actives dins de l’espai, cada entitat necessita abans desplegar un **paquet comú**, anomenat **COMMON**.  
 Aquest paquet és necessari **una sola vegada per entitat**, i no per cada agent, i conté les configuracions i recursos bàsics que permeten que els agents funcionin correctament dins de l’ESDATIB.
@@ -75,18 +72,18 @@ Aquest paquet és necessari **una sola vegada per entitat**, i no per cada agent
 
 ---
 
-## Recursos e infraestructura
+## Recursos i infraestructura
 
-L’arquitectura **SIMPL OPEN** ha estat desenvolupada amb la intenció de ser desplegada en un **cluster de Kubernetes**.  
-Per aquest motiu, qualsevol entitat que vulgui adherir-se a l’ESDATIB i accedir a l’espai de dades haurà de disposar d’un **cluster de Kubernetes** operatiu on fer el desplegament.  
+L’arquitectura **SIMPL OPEN** ha estat desenvolupada amb la intenció de ser desplegada en un **clúster de Kubernetes**.  
+Per aquest motiu, qualsevol entitat que vulgui adherir-se a l’ESDATIB i accedir a l’espai de dades haurà de disposar d’un **clúster de Kubernetes** operatiu on fer el desplegament.  
 
-El **component COMMON** i els agents necessaris per a l’entitat (**CONSUMER**, **PROVIDER** o ambdós) hauran de ser desplegats en aquest cluster, amb els arxius de configuració ja preparats per utilitzar l’eina **ArgoCD**.  
+El **component COMMON** i els agents necessaris per a l’entitat (**CONSUMER**, **PROVIDER** o ambdós) hauran de ser desplegats en aquest clúster, amb els arxius de configuració ja preparats per utilitzar l’eina **ArgoCD**.  
 
-Tot i això, el primer pas de sol·licitud d’adhesió a l’espai de dades **no requereix tenir habilitat el cluster ni haver desplegat cap agent**.  
+Tot i això, el primer pas de sol·licitud d’adhesió a l’espai de dades **no requereix tenir habilitat el clúster ni haver desplegat cap agent**.  
 
-Es recomana utilitzar un **servei cloud**, ja que facilita el desplegament i el manteniment. L’equip de l’ESDATIB ha utilitzat el servei de **Azure**, que és on podrà oferir més suport.
+Es recomana utilitzar un **servei cloud**, ja que facilita el desplegament i el manteniment. L’equip de l’ESDATIB ha utilitzat el servei de **Azure**, que és on es pot oferir més suport.
 
-### Altres requisits necessaris per al desplegament dels mòduls en el clúster
+### Altres requisits necessaris per al desplegament dels mòduls al clúster
 
 - **DNS / Hostname**  
   Cada entitat necessita un **domini** que s’utilitzarà com a base per crear les adreces dels diferents serveis dels agents dins de l’espai de dades.
@@ -118,8 +115,6 @@ El procés d’adhesió o **onboarding** compta amb **dues parts diferenciades**
   L’entitat genera una sol·licitud que serà gestionada per l’administració de governança de l’ESDATIB.  
 
 ### 2. Part amb desplegament dels agents
-- En aquesta fase ja és necessari **desplegar els agents al cluster** per poder accedir als seus serveis i obtenir les credencials corresponents.
+- En aquesta fase ja és necessari **desplegar els agents al clúster** per poder accedir als seus serveis i obtenir les credencials corresponents.
 
 Consulta la **[Guia de procés d’adhesió](OnBoarding/README.md)**.
-
-
