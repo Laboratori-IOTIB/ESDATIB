@@ -11,7 +11,7 @@
 
 Controlador d'ingrés basat en Nginx, gestiona el tràfic d’entrada HTTP/HTTPS cap a les aplicacions del clúster. Treballa conjuntament amb External DNS i Certificate Manager per exposar serveis de manera segura i automatitzada.
 
-![../Imatges/Ingress](ingress.png)
+![Ingress](../Imatges/ingress.png)
 
 ### Instal·lació
 
