@@ -47,7 +47,6 @@ A més, aquest desplegament posiciona les Illes Balears com un territori pilot i
 
 ## Objectius principals
 
-- Centralitzar dades turístiques provinents de diferents fonts.
 - Facilitar l’accés, la reutilització i la compartició de dades.
 - Millorar la presa de decisions basada en dades.
 - Impulsar la interoperabilitat i els espais de dades sectorials.
@@ -68,13 +67,24 @@ SIMPL OPEN proporciona una infraestructura que assegura:
 - Sobirania i control dels participants.
 - Compliment dels principis europeus d’espais de dades.
 
+
+Al nucli dels espais de dades hi ha els cinc tipus d’actors que Simpl-Open considera. Aquests actors són una representació simbòlica d’una xarxa distribuïda de parts cooperants dins d’un ecosistema obert. Simpl-Open, representat pel Agent Simpl-Open, s’estén a través d’aquests actors i permet la compartició d’actius entre ells. Proporciona serveis comuns sobre els quals es poden construir els espais de dades.
+
+Simpl-Open es manté agnòstic respecte a les particularitats d’un espai de dades concret, fet que permet afegir serveis específics de cada espai de dades per damunt de Simpl-Open. Aquesta capa addicional pot, per exemple, contenir estàndards de representació de dades, fer complir certificacions comunes de qualitat o definir normes de revisió entre iguals (peer review) per avaluar la qualitat de les dades. Els serveis específics de l’espai de dades adapten l’ecosistema més enllà de la simple compartició d’actius, assegurant que aquests actius esdevinguin valuosos per als participants.
+
+Simpl-Open no només té com a objectiu ser utilitzat per construir espais de dades, sinó que també crea interoperabilitat entre diferents espais de dades. A mesura que múltiples espais de dades incorporen Simpl-Open, aquests esdevenen més connectats. Això permet que els serveis travessin els límits dels espais de dades específics. Inicialment, aquests serveis seran més limitats, ja que Simpl-Open no pot capturar els detalls de tots els espais de dades diferents. Correspondrà a l’usuari gestionar les especificitats de cada espai de dades a l’hora d’interpretar els actius que obté.
+
+Per fer aquesta visió il·lustrativa més tangible, la figura següent presenta un exemple de com un conjunt d’actors distribuïts es podria interconnectar per formar un espai de dades. És important remarcar que aquesta figura mostra només un possible escenari entre moltes formes diferents d’interacció entre participants. El nombre de participants en un espai de dades, o el nombre de parts interessades darrere d’un sol actor, només està limitat per la viabilitat tècnica. Això implica que un gran nombre de participants i parts interessades poden interactuar simultàniament. L’Agent Simpl-Open que apareix a la figura serveix com a component abstracte que els actors han de desplegar per formar part de l’espai de dades.
+
+![Overview](Imatges/overview2.png)
+
 ### Agents
 
 SIMPL OPEN es fonamenta en una estructura d’agents, on cadascun pot desenvolupar funcions específiques dins de l’espai de dades. Actualment, s’identifiquen tres tipus d’agents principals:
 
-- **CONSUMER**: Agent necessari per accedir i consumir dades dins de l’espai. Permet que les entitats o sistemes obtinguin informació de manera controlada.
-- **PROVIDER**: Agent que ofereix i comparteix dades dins de l’espai. Garantitza que les dades siguin accessibles, actualitzades i documentades segons els estàndards de l’ESDATIB.
-- **AUTHORITY**: Agent encarregat de la governança i supervisió de l’espai de dades. Gestiona permisos, polítiques d’accés i assegura el compliment de normes i regulacions.
+- **CONSUMER**: són els actors que cerquen, accedeixen i utilitzen les dades posades a disposició pels proveïdors de dades. L’ús de les dades es realitza sempre d’acord amb les polítiques i condicions establertes pels proveïdors i amb el marc de governança definit per l’espai de dades.
+- **PROVIDER**: són els actors que ofereixen un o més conjunts de dades dins l’espai de dades. Aquests agents mantenen el control sobre les seves dades i en regulen l’ús mitjançant polítiques d’accés, condicions d’ús i requisits específics, assegurant que les dades es comparteixin de manera segura.
+- **AUTHORITY**: és el responsable de definir, crear, desenvolupar, operar i mantenir el framework de governança de l’espai de dades. Aquest agent vetlla pel compliment de les normes, polítiques i mecanismes comuns que regulen la compartició, l’accés, la seguretat i l’ús de les dades, garantint la confiança entre tots els participants. A més, s’encarrega de registrar els participants dins de l’espai de dades i de gestionar tant els certificats acreditatius com les credencials associades.
 
 En aquest cas, l’**agent de governança (AUTHORITY)** és desplegat per l’administració de l’ESDATIB.  
 Qualsevol altra entitat que vulgui adherir-se necessitarà desplegar els agents corresponents a les accions que desitgi realitzar, sent necessari disposar dels agents **CONSUMER** i **PROVIDER** per poder accedir i pujar dades dins de l’espai.

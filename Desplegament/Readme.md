@@ -1,7 +1,6 @@
-- [Desplegament amb ArgoCD](#desplegament-aplicació-amb-argocd)
-  - [Instal·lació d’ArgoCD](#instal·lació-dargocd)
-  - [Instruccions per desplegar l’aplicació](#instruccions-per-desplegar-laplicació)
-- [Configuració d’agents](#configuració-dagents)
+- [Ordre del Desplegament](#ordre-del-desplegament)
+- [Desplegament dels Prerrequisits](#desplegament-aplicació-amb-argocd)
+- [Configuració dels Agents](#configuració-dagents)
   - [Configuració paquet COMMON](#configuració-paquet-common)
     - [Arxiu YAML del paquet COMMON](#arxiu-yaml-del-paquet-common)
     - [Passos posteriors al desplegament del COMMON](#passos-posteriors-al-desplegament-del-common)
@@ -13,39 +12,37 @@
     - [Passos posteriors al desplegament del CONSUMER](#passos-posteriors-al-desplegament-del-consumer)
 
 ---
+# Ordre del desplegament
 
-# Desplegament d’aplicacions amb ArgoCD
+1. Prerrequisits Mínims
+2. Common Components Agent
+3. Consumer/Provider Agent
 
-## Instal·lació d’ArgoCD
+Aquest apartat es basa en la documentació oficial de [Simpl-Open](https://code.europa.eu/simpl/simpl-open/documentation).
 
-*(En aquesta secció s’haurà d’incloure la guia d’instal·lació d’ArgoCD al clúster de Kubernetes)*
+# Desplegament dels Prerrequisits
 
-## Instruccions per desplegar aplicació
+Són els serveis que donen suport a la resta dels serveis associats als agents.
 
-Amb **ArgoCD** instal·lat al **clúster de Kubernetes**, la instal·lació de paquets i aplicacions es realitza mitjançant un arxiu de configuració `.yaml`, disponible a la carpeta `Arxius_Deployment`.
+![Requeriments](Imatges/serveisrequerits.png)
 
-> ⚠️ **Atenció:** Abans de realitzar el desplegament, cal revisar les seccions específiques de cada component.
+Aquests tenen les següents funcionalitats:
 
-És **imprescindible** desplegar primer el paquet **COMMON** abans que qualsevol altre component.  
-Posteriorment, s’ha de desplegar l’agent corresponent i, un cop finalitzat aquest procés, si és necessari, es pot desplegar l’altre agent.
+1. Ingress NGINX: actua com a controlador d’ingrés del clúster, gestionant l’accés extern als serveis desplegats a Kubernetes mitjançant regles HTTP/HTTPS. Permet exposar els serveis de manera segura i centralitzada, i facilita la gestió del trànsit d’entrada.
 
-> ⚠️ El paquet **COMMON** s’ha de desplegar només una vegada per entitat.  
-> Els agents **CONSUMER** i **PROVIDER** s’han de desplegar segons les necessitats de cada entitat.
+2. Argo CD: eina de desplegament continu basada en el paradigma GitOps. S’encarrega de sincronitzar l’estat del clúster amb la configuració declarativa definida en repositoris Git, garantint desplegaments traçables, reproductibles i auditables. En el nostre cas, ArgoCD sincronitzarà els repositoris de [SIMPL-Open Europe](https://code.europa.eu/simpl), els quals contenen les versions de les aplicacions i serveis associats a cada agent, amb l'estat del clúster.
 
-En tots els casos, el desplegament amb **ArgoCD** segueix el mateix procediment:
+3. External DNS: automatitza la creació i gestió dels registres DNS associats als serveis exposats del clúster. Permet actualitzar dinàmicament els registres DNS en funció dels serveis i ingressos desplegats.
 
-1. Fer clic a **+ New App**
-2. Seleccionar **Edit as YAML**
-3. Copiar i enganxar l’arxiu de configuració `.yaml` corresponent
-4. Fer clic a **Save** per iniciar el desplegament de l’aplicació
+4. NFS CSI Provisioner: proveeix un Container Storage Interface (CSI) basat en NFS que permet la creació dinàmica de volums persistents, especialment útil per a volums amb accés compartit (ReadWriteMany).
 
-<p align="center">
-  <img src="Imatges/ArgoCd_Deploy_YAML.jpeg" alt="Desplegament d’ArgoCD amb YAML" height="400">
-</p>
+5. Certificate Manager: gestiona de manera automàtica l’emissió, renovació i ús de certificats digitals (per exemple, TLS/SSL) dins del clúster, facilitant la comunicació segura entre serveis i amb l’exterior.
+
+Consulta la **[Guia del desplegament](Agents/prerrequisits.md)**.
 
 ---
 
-# Configuració d’agents
+# Configuració dels Agents
 
 ## Configuració paquet COMMON
 
