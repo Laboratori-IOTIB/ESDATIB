@@ -103,9 +103,11 @@ En tots els casos, el desplegament amb **ArgoCD** segueix el mateix procediment:
 3. Copiar i enganxar l’arxiu de configuració `.yaml` corresponent
 4. Fer clic a **Save** per iniciar el desplegament de l’aplicació
 
-<p align="center">
+<!-- <p align="center">
   <img src="Imatges/ArgoCd_Deploy_YAML.jpeg" alt="Desplegament d’ArgoCD amb YAML" height="400">
-</p>
+</p> -->
+
+![Ingress](../Imatges/ArgoCd_Deploy_YAML.jpeg)
 
 ## Desplegament i configuració d'External DNS
 ## Desplegament i configuració de CertificateManager
