@@ -31,6 +31,20 @@ Aquest repositori inclou els components i la documentació necessaris perquè le
 
 ---
 
+## Marc del Projecte
+
+En el context del creixement exponencial de les dades i de l’estratègia europea per impulsar una economia basada en les dades, les Illes Balears representen un cas especialment rellevant a causa del pes estratègic del sector turístic. La gestió eficient, segura i sostenible de les dades turístiques és clau per millorar la competitivitat del sector, garantir la sostenibilitat del territori i oferir serveis públics i privats de més qualitat.
+
+En aquest marc, s’està treballant en el desplegament de Simpl-Open com a infraestructura base per a la creació d’un espai de dades turístic a les Illes Balears, alineat amb les polítiques de la Unió Europea. Simpl-Open, com a middleware de codi obert, modular i interoperable, permet federar dades, aplicacions i infraestructures provinents de diferents actors del sector turístic —administracions públiques, empreses, centres de recerca i proveïdors tecnològics— garantint la sobirania de les dades, la seguretat i la interoperabilitat.
+
+L’ús de Simpl-Open facilita un model descentralitzat de compartició i processament de dades, permetent que la informació es tracti més a prop de la seva font (al edge), fet especialment rellevant en un territori insular amb una elevada pressió estacional. Aquest enfocament contribueix a millorar l’eficiència energètica, reduir costos i augmentar la resiliència dels serveis digitals.
+
+La creació d’un espai de dades turístic basat en Simpl-Open permetrà integrar i reutilitzar dades procedents de diferents fonts, com ara fluxos de visitants, mobilitat, ocupació hotelera, recursos naturals, serveis públics i impacte ambiental. Això possibilitarà una presa de decisions més informada, tant per part del sector públic com del privat, afavorint polítiques turístiques més sostenibles, una millor planificació territorial i una experiència turística de major qualitat.
+
+A més, aquest desplegament posiciona les Illes Balears com un territori pilot i referent dins la Federació Europea del Núvol i els espais de dades sectorials, contribuint a l’objectiu europeu de crear una societat impulsada per les dades, alhora que es preserven els interessos locals, la transparència i la governança compartida.
+
+---
+
 ## Objectius principals
 
 - Centralitzar dades turístiques provinents de diferents fonts.
