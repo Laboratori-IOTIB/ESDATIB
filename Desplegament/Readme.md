@@ -34,9 +34,18 @@ Aquests tenen les següents funcionalitats:
 
 3. External DNS: automatitza la creació i gestió dels registres DNS associats als serveis exposats del clúster. Permet actualitzar dinàmicament els registres DNS en funció dels serveis i ingressos desplegats.
 
-4. NFS CSI Provisioner: proveeix un Container Storage Interface (CSI) basat en NFS que permet la creació dinàmica de volums persistents, especialment útil per a volums amb accés compartit (ReadWriteMany).
+   <pre>
+     
+     # LES TEVES DADES
+     CLUSTER_NAME=""               # Nom del teu clúster AKS
+     CLUSTER_RG=""                 # Grup de recursos del clúster (el teu, no el MC_)
+     DNS_ZONE_NAME=""              # El teu domini (ex: elmeudomini.com)
+     DNS_ZONE_RG=""                # Grup de recursos on està la zona DNS
+   </pre>
 
-5. Certificate Manager: gestiona de manera automàtica l’emissió, renovació i ús de certificats digitals (per exemple, TLS/SSL) dins del clúster, facilitant la comunicació segura entre serveis i amb l’exterior.
+5. NFS CSI Provisioner: proveeix un Container Storage Interface (CSI) basat en NFS que permet la creació dinàmica de volums persistents, especialment útil per a volums amb accés compartit (ReadWriteMany).
+
+6. Certificate Manager: gestiona de manera automàtica l’emissió, renovació i ús de certificats digitals (per exemple, TLS/SSL) dins del clúster, facilitant la comunicació segura entre serveis i amb l’exterior.
 
 Consulta la **[Guia del desplegament](Agents/prerrequisits.md)**.
 
