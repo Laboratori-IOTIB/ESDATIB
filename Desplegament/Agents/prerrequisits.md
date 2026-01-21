@@ -115,9 +115,7 @@ Aquesta secció descriu **pas a pas** com desplegar i configurar **External-DNS*
 
 > ℹ️ **Nota prèvia**
 >
-> - Si el domini està comprat a **OVH**, seguiu el manual d’usuari corresponent d’OVH.
-> - Aquesta guia és **només** per dominis gestionats a **Azure DNS**.
-> - Cal tenir accés suficient a la subscripció d’Azure per assignar rols.
+> En cas que es vulgui no es desplegui en un AKS, recomenam seguir 
 
 ---
 
@@ -142,7 +140,7 @@ CLUSTER_RG=""            # Resource Group del clúster (NO el MC_)
 DNS_ZONE_NAME=""         # Nom del domini (ex: example.com)
 DNS_ZONE_RG=""           # Resource Group on està la zona DNS
 ```
-### Guia pas a pas
+
 
 1. Obtenir identificadors d'Azure
 ```bash
@@ -169,9 +167,10 @@ az role assignment create \
   --role "DNS Zone Contributor" \
   --scope "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$DNS_ZONE_RG"
 ```
-**Atenció:**  
-Si la vostra subscripció **no permet assignar rols**, aquesta comanda retornarà error.  
-En aquest cas, un administrador d’Azure haurà de realitzar l’assignació manualment.
+> ⚠️ **Atenció:**  
+> Si la vostra subscripció **no permet assignar rols**, aquesta comanda retornarà error.  
+> En aquest cas, un administrador d’Azure haurà de realitzar l’assignació manualment.
+
 
 3. Crear el fitxer de configuració azure.json
 Aquest fitxer permet que External-DNS s’autentiqui amb Azure mitjançant **Managed Identity**.
@@ -242,3 +241,70 @@ kubectl -n external-dns logs -f \
 
 ## Desplegament i configuració de CertificateManager
 ## Desplegament i configuració de NFS CSI provisioner
+
+**Atenció:**  
+Aquest desplegament s’ha de fer seguint el manual d’usuari de NFS Provider i està pensat per entorns **Azure**.
+
+---
+
+### Prerequisits
+
+```md
+- `kubectl` configurat contra el clúster
+- `helm` instal·lat
+- StorageClass per defecte funcional al clúster
+
+
+1. Afegir el repositori Helm
+```bash
+helm repo add kvaps https://kvaps.github.io/charts
+helm repo update
+```
+2. Instal·lar el NFS Server Provisioner
+```bash
+helm install nfs-server kvaps/nfs-server-provisioner \
+  --namespace nfs-server \
+  --create-namespace \
+  --set persistence.enabled=true \
+  --set persistence.storageClass=default \
+  --set persistence.size=10Gi \
+  --set storageClass.name=nfs
+```
+3. Compatibilitat amb Azure Storage
+> ⚠️ **Atenció:**
+> Azure **no és compatible** amb la StorageClass `csi-cinder-high-speed`.
+> Per aquesta raó, es defineix manualment una StorageClass amb el driver real d’Azure.
+```bash
+cat <<EOF | kubectl apply -f -
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: csi-cinder-high-speed   # Nom requerit pels PVCs existents
+provisioner: disk.csi.azure.com # Driver real d’Azure
+parameters:
+  skuName: Premium_LRS
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer
+allowVolumeExpansion: true
+EOF
+```
+4. Recrear PersistentVolumeClaims (PVC)
+Després de canviar o crear la StorageClass, és necessari eliminar els PVCs
+existents perquè Kubernetes els torni a crear amb la configuració correcta.
+Eliminar els PVCs d’Elasticsearch:
+```bash
+kubectl delete pvc -n common01 -l app=elasticsearch-maste
+```
+Eliminar els PVCs de Logstash:
+```bash
+kubectl delete pvc -n common01 -l app=logstash-logstash-beats
+```
+
+
+
+
+
+
+
+
+
