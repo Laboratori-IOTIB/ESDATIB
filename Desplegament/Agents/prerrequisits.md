@@ -110,5 +110,135 @@ En tots els casos, el desplegament amb **ArgoCD** segueix el mateix procediment:
 ![Ingress](../Imatges/ArgoCd_Deploy_YAML.jpeg)
 
 ## Desplegament i configuració d'External DNS
+
+Aquesta secció descriu **pas a pas** com desplegar i configurar **External-DNS** en un clúster **AKS** quan el domini està **comprat i gestionat a Azure DNS** (per exemple, domini adquirit a través d’Azure App Service).
+
+> ℹ️ **Nota prèvia**
+>
+> - Si el domini està comprat a **OVH**, seguiu el manual d’usuari corresponent d’OVH.
+> - Aquesta guia és **només** per dominis gestionats a **Azure DNS**.
+> - Cal tenir accés suficient a la subscripció d’Azure per assignar rols.
+
+---
+
+### Prerequisits
+
+- `az` (Azure CLI) autenticat (`az login`)
+- `kubectl` configurat contra el clúster AKS
+- `helm` instal·lat
+- Clúster AKS amb **Managed Identity** habilitada
+- Zona DNS ja creada a Azure DNS
+
+---
+
+### Variables necessàries
+
+Definiu primer les variables següents:
+
+```bash
+# DADES DEL CLÚSTER I DNS
+CLUSTER_NAME=""          # Nom del clúster AKS
+CLUSTER_RG=""            # Resource Group del clúster (NO el MC_)
+DNS_ZONE_NAME=""         # Nom del domini (ex: example.com)
+DNS_ZONE_RG=""           # Resource Group on està la zona DNS
+```
+### Guia pas a pas
+
+1. Obtenir identificadors d'Azure
+```bash
+# Subscription ID
+SUBSCRIPTION_ID=$(az account show --query id -o tsv)
+
+# Tenant ID
+TENANT_ID=$(az account show --query tenantId -o tsv)
+
+# Client ID de la identitat Kubelet (IDENTITAT CORRECTA)
+IDENTITY_CLIENT_ID=$(az aks show \
+  -g $CLUSTER_RG \
+  -n $CLUSTER_NAME \
+  --query identityProfile.kubeletidentity.clientId \
+  -o tsv)
+```
+2. Assignar permissos a la identidad del clúster
+   
+External-DNS necessita permisos sobre la zona DNS per poder crear i actualitzar registres.
+
+```bash
+az role assignment create \
+  --assignee $IDENTITY_CLIENT_ID \
+  --role "DNS Zone Contributor" \
+  --scope "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$DNS_ZONE_RG"
+```
+**Atenció:**  
+Si la vostra subscripció **no permet assignar rols**, aquesta comanda retornarà error.  
+En aquest cas, un administrador d’Azure haurà de realitzar l’assignació manualment.
+
+3. Crear el fitxer de configuració azure.json
+Aquest fitxer permet que External-DNS s’autentiqui amb Azure mitjançant **Managed Identity**.
+```bash
+cat <<EOF > azure.json
+{
+  "tenantId": "$TENANT_ID",
+  "subscriptionId": "$SUBSCRIPTION_ID",
+  "resourceGroup": "$DNS_ZONE_RG",
+  "useManagedIdentityExtension": true,
+  "userAssignedIdentityID": "$IDENTITY_CLIENT_ID"
+}
+EOF
+```
+4. Crear el namespace d’External-DNS
+```bash
+kubectl create namespace external-dns \
+  --dry-run=client -o yaml | kubectl apply -f -
+```
+5. Crear el secret amb la configuració d’Azure
+Eliminar el secret anterior si existeix:
+```bash
+kubectl -n external-dns delete secret external-dns-azure-config \
+  --ignore-not-found
+```
+Crear el nou secret:
+```bash
+kubectl -n external-dns create secret generic external-dns-azure-config \
+  --from-file=azure.json
+```
+6. Afegir el repositori Helm de Bitnami
+```bash
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo update
+```
+7. Instal·lar o actualitzar External-DNS
+```bash
+helm upgrade --install external-dns bitnami/external-dns \
+  --namespace external-dns \
+  --set provider=azure \
+  --set azure.useManagedIdentityExtension=true \
+  --set azure.resourceGroup=$DNS_ZONE_RG \
+  --set azure.tenantId=$TENANT_ID \
+  --set azure.subscriptionId=$SUBSCRIPTION_ID \
+  --set txtOwnerId=$CLUSTER_NAME \
+  --set domainFilters={$DNS_ZONE_NAME} \
+  --set sources={ingress} \
+  --set extraVolumeMounts[0].name=azure-config-file \
+  --set extraVolumeMounts[0].mountPath=/etc/kubernetes/azure.json \
+  --set extraVolumeMounts[0].subPath=azure.json \
+  --set extraVolumes[0].name=azure-config-file \
+  --set extraVolumes[0].secret.secretName=external-dns-azure-config
+```
+8. Verificació
+Reiniciar el deployment per assegurar que es carrega tota la configuració:
+```bash
+kubectl -n external-dns rollout restart deployment external-dns
+```
+Esperar uns segons:
+```bash
+sleep 10
+```
+Consultar els logs: 
+```bash
+kubectl -n external-dns logs -f \
+  -l app.kubernetes.io/name=external-dns
+```
+
 ## Desplegament i configuració de CertificateManager
 ## Desplegament i configuració de NFS CSI provisioner
