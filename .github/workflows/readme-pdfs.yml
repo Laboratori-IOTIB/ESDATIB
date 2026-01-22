@@ -1,0 +1,42 @@
+name: Generar PDF de todos los README
+
+on:
+  push:
+    branches:
+      - main  # Cambia si tu rama principal tiene otro nombre
+
+jobs:
+  generate-pdfs:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Chequear el repositorio
+      uses: actions/checkout@v3
+      with:
+        persist-credentials: true  # necesario para hacer commit desde GitHub Actions
+
+    - name: Instalar Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Instalar markdown-pdf
+      run: npm install -g markdown-pdf
+
+    - name: Buscar y convertir todos los README.md
+      run: |
+        # Buscar todos los archivos README.md
+        find . -name "README.md" | while read file; do
+          echo "Generando PDF para $file"
+          dir=$(dirname "$file")
+          base=$(basename "$file" .md)
+          markdown-pdf "$file" -o "$dir/$base.pdf"
+        done
+
+    - name: Hacer commit de los PDFs
+      run: |
+        git config --local user.name "github-actions[bot]"
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git add $(find . -name "README.pdf")
+        git commit -m "Actualizar PDFs de README" || echo "No hay cambios"
+        git push
