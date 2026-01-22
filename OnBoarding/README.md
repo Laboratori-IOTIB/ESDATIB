@@ -1,4 +1,4 @@
-## Procés complet d’adhesió a l’ESDATIB
+# Procés complet d’adhesió a l’ESDATIB
 
 El procés d’adhesió és necessari **per a cada agent** (CONSUMER o PROVIDER).  
 Com que el procés està dividit en parts diferenciades, és possible realitzar la **primera part abans del desplegament o configuració del clúster**.
@@ -14,7 +14,7 @@ El procés d’adhesió a l’ESDATIB es divideix en **dues parts principals**:
 
 ---
 
-### 1. Part sense necessitat de desplegament ni configuració
+## 1. Part sense necessitat de desplegament ni configuració
 
 L’entitat ha de generar una sol·licitud d’adhesió que serà gestionada per l’administració de **governança de l’ESDATIB**.
 
@@ -48,13 +48,65 @@ Els passos següents requereixen **desplegament dels agents al clúster**.
 
 ---
 
-### 2. Part amb desplegament dels agents
-- En aquesta fase ja és necessari **desplegar els agents al clúster** per poder accedir al seus serveis i obtenir les credencials corresponents.
+## 2. Part amb desplegament dels agents
 
-> ⚠️ Proximament operatiu desplegament Agents.
-> Consulta la **[Guia de procés desplegament Agents](../Desplegament/Readme.md)**.
+En aquesta fase ja és necessari **desplegar els agents al clúster** per poder accedir als seus serveis i obtenir les credencials corresponents.
+
+> ⚠️ Proximament operatiu de desplegament dels Agents.  
+> Consulta la **[Guia de procés de desplegament d’Agents](../Desplegament/Readme.md)**.
 
 
+### Portal Participant
 
+Accedeix al portal del participant (emplenant amb el teu domini host propi):  
+`https://<participant-frontend>/participant-utility/agent-configuration`
 
+#### Generació de les parelles de claus
+
+<p align="center">
+  <img src="Imatges/GenerateKeyPair.png" alt="GenerateKeyPair" height="500">
+</p>
+
+#### Descarrega del CSR generat
+
+<p align="center">
+  <img src="Imatges/DownloadCSR.png" alt="DownloadCSR" height="500">
+</p>
+
+Omple els camps amb la informació pròpia de l’agent:
+
+- **Common Name**: T2 endpoint del participant  
+- **Organization**: Nom de l’entitat  
+- **Organization Unit**: Nom del grup dins l’entitat  
+- **Country**: Codi del país de pertinença
+
+---
+
+### Portal Governança
+
+Accedeix al portal de l’autoritat amb l’usuari creat al **Pas 1**:  
+[https://authority.fe.authority01.ibtourismdataspace.org/onboarding/application/additional-request](https://authority.fe.authority01.ibtourismdataspace.org/onboarding/application/additional-request)
+
+#### Pujar el CSR generat
+
+Automàticament es genera un arxiu `certificate.pem` que serà necessari per al següent pas.
+
+<p align="center">
+  <img src="Imatges/UploadCSR.png" alt="UploadCSR" height="500">
+</p>
+
+---
+
+### Portal Participant
+
+Torna al portal del participant (emplenant amb el teu domini host propi):  
+`https://<participant-frontend>/participant-utility/agent-configuration`
+
+#### Pujar el certificat `certificate.pem`
+
+Puja l’arxiu `certificate.pem` descarregat des del portal de Governança per completar la configuració de l’agent.
+
+<p align="center">
+  <img src="Imatges/UploadCertificate.png" alt="UploadCertificate" height="500">
+</p>
 
