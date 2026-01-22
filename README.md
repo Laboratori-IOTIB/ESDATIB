@@ -158,7 +158,7 @@ Consulta la **[Guia de procés de desplegament](Desplegament/Readme.md)**.
 
 ---
 
-## Usuaris i Rols
+## Usuaris, Rols i Serveis
 
 Els agents disposen de diferents serveis propis, creats com a subdominis del **hostname** de l’entitat. Aquests portals permeten desenvolupar accions específiques segons el tipus d’agent.
 
