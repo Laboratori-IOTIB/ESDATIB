@@ -172,7 +172,7 @@ Consulta la **[Guia d’Usuaris i Rols](Usuaris_i_Rols/README.md)**.
 
 Un cop completat el desplegament i realitzat l’OnBoarding d’un agent **Provider**, l’entitat pot **publicar dades** a l’espai.
 
-Consulta la **[Publicació de dades al catàleg](OnBoarding/README.md)**.
+Consulta la **[Publicació de dades al catàleg](Publicació_Dades/README.md)**.
 
 ---
 
@@ -180,7 +180,7 @@ Consulta la **[Publicació de dades al catàleg](OnBoarding/README.md)**.
 
 Un cop completat el desplegament i realitzat l’OnBoarding d’un agent **Consumer**, l’entitat pot accedir al **catàleg** i començar a consumir les dades publicades.
 
-Consulta la **[Accés a dades al catàleg](OnBoarding/README.md)**.
+Consulta la **[Accés a dades al catàleg](Procés_consum_dades/README.md)**.
 
 
 
