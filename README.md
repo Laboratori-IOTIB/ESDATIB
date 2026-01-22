@@ -145,17 +145,42 @@ Consulta la **[Guia de procés d’adhesió](OnBoarding/README.md)**.
 
 ---
 
-## Desplegament dels Agents 
+## Desplegament dels Agents
+
+Com s’ha mencionat prèviament, **SIMPL OPEN**, base de l’ESDATIB, està construït amb paquets d’agents que permeten desenvolupar les seves diferents funcions dins l’espai de dades.  
+
+Actualment existeixen els agents **Consumer** i **Provider**, a més de la **Governança**, gestionada per l’administració de l’ESDATIB.
+
+Com els seus noms indiquen, cada agent permet realitzar accions de consum o subministrament de dades, respectivament.  
+Tots els agents han de ser desplegats en un **clúster de Kubernetes prèviament configurat**.
+
+Consulta la **[Guia de procés de desplegament](OnBoarding/README.md)**.
 
 ---
 
 ## Usuaris i Rols 
 
+Els agents disposen de diferents serveis propis, creats com a subdominis del **hostname** de l’entitat, portals on es poden desenvolupar accions específiques.
+
+Per accedir-hi es necessiten credencials, que venen configurades de manera predeterminada amb **rols diferenciats**.
+
+Consulta la **[Guia d’Usuaris i Rols](OnBoarding/README.md)**.
+
 ---
 
-## Procés de Oferiment de dades a l'ESDATIB ( Provider )
+## Procés d’oferta de dades a l'ESDATIB (Provider)
+
+Un cop completat el desplegament i realitzat l’OnBoarding d’un agent **Provider**, l’entitat pot **publicar dades** a l’espai.
+
+Consulta la **[Publicació de dades al catàleg](OnBoarding/README.md)**.
 
 ---
 
-## Accés i consum de dades a l'ESDATIB ( Consumer)
+## Accés i consum de dades a l'ESDATIB (Consumer)
+
+Un cop completat el desplegament i realitzat l’OnBoarding d’un agent **Consumer**, l’entitat pot accedir al **catàleg** i començar a consumir les dades publicades.
+
+Consulta la **[Publicació de dades al catàleg](OnBoarding/README.md)**.
+
+
 
