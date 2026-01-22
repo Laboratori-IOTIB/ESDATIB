@@ -142,3 +142,20 @@ El procés d’adhesió o **onboarding** compta amb **dues parts diferenciades**
 - En aquesta fase ja és necessari **desplegar els agents al clúster** per poder accedir als seus serveis i obtenir les credencials corresponents.
 
 Consulta la **[Guia de procés d’adhesió](OnBoarding/README.md)**.
+
+---
+
+## Desplegament dels Agents 
+
+---
+
+## Usuaris i Rols 
+
+---
+
+## Procés de Oferiment de dades a l'ESDATIB ( Provider )
+
+---
+
+## Accés i consum de dades a l'ESDATIB ( Consumer)
+
