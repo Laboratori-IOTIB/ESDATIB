@@ -158,13 +158,25 @@ Consulta la **[Guia de procés de desplegament](Desplegament/Readme.md)**.
 
 ---
 
-## Usuaris i Rols 
+## Usuaris i Rols
 
-Els agents disposen de diferents serveis propis, creats com a subdominis del **hostname** de l’entitat, portals on es poden desenvolupar accions específiques.
+Els agents disposen de diferents serveis propis, creats com a subdominis del **hostname** de l’entitat. Aquests portals permeten desenvolupar accions específiques segons el tipus d’agent.
 
-Per accedir-hi es necessiten credencials, que venen configurades de manera predeterminada amb **rols diferenciats**.
+Un cop desplegats els agents (**Governança**, **Provider** i **Consumer**), els usuaris tindran accés als serveis corresponents a cada tipus d’agent.  
+
+Aquest conjunt de serveis i funcionalitats permetrà:
+
+- Incorporar nous participants.  
+- Publicar descripcions de conjunts de dades al **catàleg federat**.  
+- Consultar les descripcions publicades al catàleg.  
+- Transferir conjunts de dades entre agents.  
+- Monitoritzar les transaccions.  
+
+Per defecte, a cada agent desplegat hi trobarem usuaris creats amb diferents **rols**.  
+L’accés a un o altre servei de l’agent dependrà del **rol** de l’usuari que utilitzem.
 
 Consulta la **[Guia d’Usuaris i Rols](Usuaris_i_Rols/README.md)**.
+
 
 ---
 
