@@ -154,7 +154,7 @@ Actualment existeixen els agents **Consumer** i **Provider**, a més de la **Gov
 Com els seus noms indiquen, cada agent permet realitzar accions de consum o subministrament de dades, respectivament.  
 Tots els agents han de ser desplegats en un **clúster de Kubernetes prèviament configurat**.
 
-Consulta la **[Guia de procés de desplegament](OnBoarding/README.md)**.
+Consulta la **[Guia de procés de desplegament](Desplegament/Readme.md)**.
 
 ---
 
@@ -164,7 +164,7 @@ Els agents disposen de diferents serveis propis, creats com a subdominis del **h
 
 Per accedir-hi es necessiten credencials, que venen configurades de manera predeterminada amb **rols diferenciats**.
 
-Consulta la **[Guia d’Usuaris i Rols](OnBoarding/README.md)**.
+Consulta la **[Guia d’Usuaris i Rols](Usuaris_i_Rols/README.md)**.
 
 ---
 
