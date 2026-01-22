@@ -3,34 +3,30 @@ name: Generar PDF de todos los README
 on:
   push:
     branches:
-      - main  # Cambia si tu rama principal tiene otro nombre
+      - main
 
 jobs:
   generate-pdfs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Chequear el repositorio
+    - name: Chequear repositorio
       uses: actions/checkout@v3
       with:
-        persist-credentials: true  # necesario para hacer commit desde GitHub Actions
+        persist-credentials: true
 
-    - name: Instalar Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-
-    - name: Instalar markdown-pdf
-      run: npm install -g markdown-pdf
-
-    - name: Buscar y convertir todos los README.md
+    - name: Instalar Pandoc y LaTeX
       run: |
-        # Buscar todos los archivos README.md
+        sudo apt-get update
+        sudo apt-get install -y pandoc texlive-xetex texlive-fonts-recommended texlive-latex-recommended
+
+    - name: Buscar y convertir todos los README.md a PDF
+      run: |
         find . -name "README.md" | while read file; do
           echo "Generando PDF para $file"
           dir=$(dirname "$file")
           base=$(basename "$file" .md)
-          markdown-pdf "$file" -o "$dir/$base.pdf"
+          pandoc "$file" -o "$dir/$base.pdf"
         done
 
     - name: Hacer commit de los PDFs
