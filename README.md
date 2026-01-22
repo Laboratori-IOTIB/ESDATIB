@@ -180,7 +180,7 @@ Consulta la **[Publicació de dades al catàleg](OnBoarding/README.md)**.
 
 Un cop completat el desplegament i realitzat l’OnBoarding d’un agent **Consumer**, l’entitat pot accedir al **catàleg** i començar a consumir les dades publicades.
 
-Consulta la **[Publicació de dades al catàleg](OnBoarding/README.md)**.
+Consulta la **[Accés a dades al catàleg](OnBoarding/README.md)**.
 
 
 
