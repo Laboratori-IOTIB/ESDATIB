@@ -18,16 +18,17 @@ El procés d’adhesió a l’ESDATIB es divideix en **dues parts principals**:
 
 L’entitat ha de generar una sol·licitud d’adhesió que serà gestionada per l’administració de **governança de l’ESDATIB**.
 
-**Emplenament del formulari**  
+### Emplenament del formulari
+
 L’entitat ha de completar el formulari de sol·licitud disponible a:  
 [https://authority.fe.authority01.ibtourismdataspace.org/onboarding/application/request](https://authority.fe.authority01.ibtourismdataspace.org/onboarding/application/request)
 
-- Al camp **Participant_Type** apareixen quatre opcions disponibles.
-- Actualment, només estan operatives les opcions **Consumer** i **Data Provider**.
+- Al camp **Participant_Type** apareixen quatre opcions disponibles.  
+- Actualment, només estan operatives les opcions **Consumer** i **Data Provider**.  
 - L’entitat ha de seleccionar **una d’aquestes opcions** segons el seu rol.
 
 > ℹ️ Una entitat que vulgui **consumir i proveir dades** haurà de realitzar el procés **dues vegades**, una per a cada tipus de participant.  
-> Aquest procés generarà **dos usuaris diferenciats**: un amb rol `_consumer` i un altre amb rol `_provider`.
+> Aquest procés generarà **dos usuaris**: Recomanació afegir un `_consumer` i un altre `_provider` per facilitat diferenciar usuaris per rol.
 
 <p align="center">
   <img src="Imatges/FormulariOnBoarding.jpeg" alt="Formulari OnBoarding ESDATIB" height="500">
@@ -36,7 +37,8 @@ L’entitat ha de completar el formulari de sol·licitud disponible a:
 Un cop completat el formulari i generades les credencials, l’usuari serà redirigit a un portal on podrà iniciar sessió amb les credencials acabades de crear:  
 [https://authority.fe.authority01.ibtourismdataspace.org/onboarding/application/additional-request](https://authority.fe.authority01.ibtourismdataspace.org/onboarding/application/additional-request)
 
-**Pujar documentació i enviar la sol·licitud**  
+### Pujar documentació i enviar la sol·licitud
+
 En aquest portal, l’entitat ha de pujar un fitxer `ID.pdf` i fer clic a **Submit Application Request**.
 
 <p align="center">
@@ -50,9 +52,9 @@ Els passos següents requereixen **desplegament dels agents al clúster**.
 
 ## 2. Part amb desplegament dels agents
 
-En aquesta fase ja és necessari **desplegar els agents al clúster** per poder accedir als seus serveis i obtenir les credencials corresponents.
+En aquesta fase ja és necessari **desplegar els agents al clúster** per poder accedir als seus serveis i obtenir les credencials corresponents. També és necessària **l’aprovació de la sol·licitud prèvia** per part de l’administració.
 
-> ⚠️ Proximament operatiu de desplegament dels Agents.  
+> ⚠️ Necessari **previament** el desplegament dels Agents.  
 > Consulta la **[Guia de procés de desplegament d’Agents](../Desplegament/Readme.md)**.
 
 
@@ -60,6 +62,8 @@ En aquesta fase ja és necessari **desplegar els agents al clúster** per poder 
 
 Accedeix al portal del participant (emplenant amb el teu domini host propi):  
 `https://<participant-frontend>/participant-utility/agent-configuration`
+
+**Usuari Predefinit**: a.w
 
 #### Generació de les parelles de claus
 
@@ -89,7 +93,7 @@ Accedeix al portal de l’autoritat amb l’usuari creat al **Pas 1**:
 
 #### Pujar el CSR generat
 
-Automàticament es genera un arxiu `certificate.pem` que serà necessari per al següent pas.
+Automàticament es generarà un arxiu `certificate.pem` que serà necessari per al següent pas.
 
 <p align="center">
   <img src="Imatges/UploadCSR.png" alt="UploadCSR" height="500">
@@ -102,6 +106,8 @@ Automàticament es genera un arxiu `certificate.pem` que serà necessari per al 
 Torna al portal del participant (emplenant amb el teu domini host propi):  
 `https://<participant-frontend>/participant-utility/agent-configuration`
 
+**Usuari Predefinit**: a.w
+
 #### Pujar el certificat `certificate.pem`
 
 Puja l’arxiu `certificate.pem` descarregat des del portal de Governança per completar la configuració de l’agent.
@@ -110,3 +116,4 @@ Puja l’arxiu `certificate.pem` descarregat des del portal de Governança per c
   <img src="Imatges/UploadCertificate.png" alt="UploadCertificate" height="500">
 </p>
 
+Una vegada finalitzat el procés, l’OnBoarding a l’ESDATIB estarà completat i l’agent estarà llest per desenvolupar les funcions corresponents.
