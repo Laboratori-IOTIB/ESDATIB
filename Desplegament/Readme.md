@@ -44,35 +44,16 @@ Consulta la **[Guia del desplegament](Agents/prerrequisits.md)**.
 
 # Configuració dels Agents
 
-## Configuració paquet COMMON
+---
 
-### Arxiu YAML del paquet COMMON
-
-
-### Passos posteriors al desplegament del COMMON
-
+Consulta la **[Guia Configuració Agent COMMON](Agents/common.md)**.
 
 ---
 
-## Configuració Agent PROVIDER
-
-### Arxiu YAML del paquet PROVIDER
-
-
-
-### Passos posteriors al desplegament del PROVIDER
-
-
+Consulta la **[Guia Configuració Agent CONSUMER](Agents/consumer.md)**.
 
 ---
 
-## Configuració Agent CONSUMER
-
-### Arxiu YAML del paquet CONSUMER
-
-
-
-### Passos posteriors al desplegament del CONSUMER
-
+Consulta la **[Guia Configuració Agent PROVIDER](Agents/provider.md)**.
 
 ---
