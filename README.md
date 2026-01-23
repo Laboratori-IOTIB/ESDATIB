@@ -135,8 +135,17 @@ Actualment, l’espai es troba en una fase primigènia i els requisits es manten
 
 - **DNS / Hostname**  
   Cada entitat necessita un **domini** que s’utilitzarà com a base per crear les adreces dels diferents serveis dels agents dins de l’espai de dades.
----
 
+### Arquitectures per a la infraestructura
+
+Tot i que és necessari que els agents disposin d’una tier-2 gateway amb una adreça IP i un subdomini DNS públics per poder comunicar-se entre ells, no és obligatori que els serveis exposats a la tier-1 gateway, així com les interfícies d’usuari, estiguin accessibles des d’Internet.
+
+Tenint això en compte, proposem dos tipus d’arquitectures per al desplegament del clúster i dels agents.
+
+1. **[Arquitectura amb serveis exposats a Internet amb TLS](Arquitectures/serveispublics.md)**.
+2. **[Arquitectura amb serveis interns a una xarxa privada](Arquitectures/serveisprivats.md)**. 
+
+---
 ## Procés d’adhesió a l’ESDATIB
 
 El procés d’adhesió o **onboarding** compta amb **dues parts diferenciades**:
