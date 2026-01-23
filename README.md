@@ -1,14 +1,21 @@
+
 - [ESDATIB – Espai de Dades Turístiques de les Illes Balears](#esdatib--espai-de-dades-turistiques-de-les-illes-balears)
+- [Marc del Projecte](#marc-del-projecte)
 - [Objectius principals](#objectius-principals)
 - [Arquitectura i marc tecnològic](#arquitectura-i-marc-tecnològic)
   - [Agents](#agents)
 - [Recursos i infraestructura](#recursos-i-infraestructura)
-  - [Altres requisits necessaris per al desplegament dels mòduls al clúster](#altres-requisits-necessaris-per-al-desplegament-dels-mòduls-al-clúster)
   - [Requisits del clúster](#requisits-del-clúster)
     - [Requisits Experimental](#requisits-experimental)
     - [Requisits Producció](#requisits-producció)
+  - [Altres requisits necessaris per al desplegament dels mòduls al clúster](#altres-requisits-necessaris-per-al-desplegament-dels-mòduls-al-clúster)
 - [Procés d’adhesió a l’ESDATIB](#procés-dadhesió-a-lesdatib)
-
+  - [Part sense necessitat de desplegament ni configuració](#1-part-sense-necessitat-de-desplegament-ni-configuració)
+  - [Part amb desplegament dels agents](#2-part-amb-desplegament-dels-agents)
+- [Desplegament dels Agents](#desplegament-dels-agents)
+- [Usuaris, Rols i Serveis](#usuaris-rols-i-serveis)
+- [Procés d’oferta de dades a l'ESDATIB (Provider)](#procés-doferta-de-dades-a-lesdatib-provider)
+- [Accés i consum de dades a l'ESDATIB (Consumer)](#accés-i-consum-de-dades-a-lesdatib-consumer)
 ---
 <p align="center">
   <img src="Imatges/LG_CH.png" alt="Diagrama de l’ESDATIB" height="70">
