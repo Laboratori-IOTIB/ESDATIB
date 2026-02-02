@@ -12,3 +12,6 @@ configMapGenerator:
     files:
       - en.json=json/simpl-fe-onboarding/onboarding/en.json
 
+# Patch del Deployment existente (solo volumenes y mounts)
+resources:
+  - patches/patch-simpl-fe-onboarding.yaml
