@@ -4,13 +4,9 @@ metadata:
   name: simpl-fe-onboarding
   namespace: authority01
 spec:
-  selector:
-    matchLabels:
-      app: simpl-fe-onboarding
+
   template:
-    metadata:
-      labels:
-        app: simpl-fe-onboarding
+
     spec:
       volumes:
         - name: onboarding-i18n
