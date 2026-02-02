@@ -1,5 +1,5 @@
 {
-  "title": "Benvingut a l'infern ESDATIB",
+  "title": "Benvingut a l'ESDATIB",
   "common": {
     "yes": "Sí",
     "actionCompleted": "Acció completada",
@@ -15,7 +15,7 @@
     "reactivate": "Reactiva credencials"
   },
   "info": {
-    "title": "Benvingut a l'infern ESDATIB",
+    "title": "Benvingut a l'ESDATIB",
     "subTitle": "Per accedir a aquest espai de dades necessitaràs el següent:",
     "descriptionStep1": "Registra't per obtenir noves credencials. Es requereix un correu electrònic, nom de l'organització i tipus de participant.",
     "descriptionStep2": "Després d'iniciar sessió, completa el procediment d'incorporació",
@@ -23,7 +23,7 @@
     "button": "Registra't per a aquest espai de dades "
   },
   "requestApplication": {
-    "title": "Benvingut a l'infern ESDATIB",
+    "title": "Benvingut a l'ESDATIB",
     "email": "Adreça de correu",
     "emailPlaceholder": "Introdueix una adreça de correu vàlida",
     "emailValidation": "Ha de ser un correu vàlid",
@@ -69,7 +69,7 @@
     "notValidChar": "Caràcter especial no permès"
   },
   "requestOnboarding": {
-    "title": "Benvingut a l'infern ESDATIB",
+    "title": "Benvingut a l'ESDATIB",
     "label": "Carrega fitxer",
     "inputLabel": "Carrega",
     "downloadFile": "Descarrega",
@@ -302,7 +302,7 @@
     "identityAvailable": "Hi ha {{identityNumbers}} atributs d'identitat disponibles per a aquesta sol·licitud."
   },
   "status": {
-    "title": "Benvingut a l'infern ESDATIB",
+    "title": "Benvingut a l'ESDATIB",
     "subTitle": "Has completat amb èxit la teva sol·licitud d'incorporació i un compte.",
     "subSubTitle": "A continuació trobaràs l'estat de la teva sol·licitud:",
     "step1": "Sol·licitud enviada",
