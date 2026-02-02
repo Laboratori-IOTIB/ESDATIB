@@ -1,0 +1,183 @@
+{
+  "common": {
+    "yes": "Yes",
+    "no": "No"
+  },
+  "userInformationPage": {
+    "title": "Users list",
+    "email": "Email",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "username": "Username",
+    "updateTimestamp": "Last update date",
+    "info": "User roles",
+    "cancel": "Close",
+    "userRoles": "Roles list",
+    "newUser": "Create new user",
+    "noRoles": "No role for the selected user.",
+    "empty": "No Data",
+    "filters": {
+      "email": "Email",
+      "firstName": "First Name",
+      "lastName":"Last Name",
+      "username": "Username",
+      "placeholder": {
+        "email": "Type an email",
+        "firstName": "Type a first name",
+        "lastName":"Type a last name",
+        "username": "Type a username"
+      },
+      "search": "Apply",
+      "reset": "Reset"
+    }
+  },
+  "newUser": {
+    "title": "New User",
+    "email": "Email address",
+    "emailPlaceholder": "Email",
+    "firstName": "First Name",
+    "firstNamePlaceholder": "Name",
+    "lastName": "Last Name",
+    "lastNamePlaceholder": "Last Name",
+    "username": "Username",
+    "usernamePlaceholder": "Username",
+    "password": "Password",
+    "passwordPlaceholder": "Password",
+    "confirmPassword": "Password confirmation",
+    "confirmPasswordPlaceholder": "Confirm Password",
+    "roles": "Roles",
+    "rolesPlaceholder": "Roles",
+    "rolesEmpty": "There are no roles available",
+    "button": "Create new user",
+    "saveSuccess": "New user successfully created",
+    "emailValidation": "Must be a valid email",
+    "required": "Field is required and cannot be empty",
+    "noMatch": "Passwords do not match",
+    "passwordRules": {
+      "mustBeBetween": "The password must be between",
+      "passwordLength": "{{start}} and {{end}} characters long",
+      "containsAtLeast": "and contain at least",
+      "uppercaseLetters": "{{num}} uppercase letter (A-Z)",
+      "lowercaseLetters": "{{num}} lowercase letter (a-z)",
+      "numbers": "{{num}} number (0-9)",
+      "specialChars": "{{num}} special character (!£%&&#64; etc).",
+      "forbidden": "The password must not contain portions of Email, Organisation name, Name, Surname, or Username greater than {{num}} characters."
+    }
+  },
+  "landing-pages": {
+    "unauthorized": {
+      "title": "Role Restricted Access",
+      "message": "Access denied. Your role does not grant permission to view this content."
+    },
+    "error-page": {
+      "title": "Error",
+      "message": {
+        "400": "Your request could not be understood by the server due to invalid syntax or parameters.",
+        "401": "You are not authorized to access this resource. Please ensure you are logged in with the correct credentials.",
+        "403": "Access denied. Your role does not grant permission to view this content.",
+        "404": "The resource you are looking for could not be found on the server.",
+        "500": "The server encountered an internal error and was unable to complete your request. Please try again later.",
+        "501": "The server does not support the functionality required to fulfill the request.",
+        "502": "The server, acting as a gateway, received an invalid response from the upstream server.",
+        "503": "The server is currently unavailable due to overload or maintenance. Please try again later.",
+        "504": "The server, acting as a gateway, did not receive a timely response from the upstream server.",
+        "505": "The server does not support the HTTP protocol version used in the request.",
+        "508": "The server detected a loop while processing the request.",
+        "511": "The client must authenticate to gain network access."
+      }
+    }
+  },
+  "rolesInfoPage": {
+    "empty": "No Data",
+    "title": "Roles list",
+    "name": "Name",
+    "description": "Description",
+    "detail": "Detail",
+    "showDetail": "Show detail",
+    "filters": {
+      "name": "Name",
+      "description": "Description",
+      "placeholder": {
+        "name": "Type a name",
+        "description": "Type a description"
+      },
+      "search": "Apply",
+      "reset": "Reset"
+    }
+  },
+  "roleDetail": {
+    "title": "Role Detail",
+    "roleName": "Role Name",
+    "roleDescription": "Role Description",
+    "empty": "No Data",
+    "resetAttributes": "Reset",
+    "saveAttributes": "Save",
+    "saveChanges": "Save changes",
+    "messageChanges": "This will change the attributes of this role, potentially affecting many users. Do you wish to proceed?",
+    "disabledExplanation": "This attribute can't be selected because it's not assigned to the participant or assignable to a role.",
+    "updateSuccessMessage": "Role attributes successfully changed",
+    "updateErrorMessage": "Changes could not be saved. PLease try again later.",
+    "filters": {
+      "name": "Name",
+      "code": "Code",
+      "updateTimestamp": "Select date range",
+      "updateTimestampFrom": "Start Date",
+      "updateTimestampTo": "End Date",
+      "placeholder": {
+        "name": "Type a name",
+        "code": "Type a code"
+      },
+      "search": "Apply",
+      "reset": "Reset"
+    },
+    "identityAttributesInfoPage": {
+      "title": "Attributes list",
+      "name": "Name",
+      "code": "Code",
+      "assignableToRoles": "Assignable to roles",
+      "updateTimestamp": "Last Synchronization Date"
+    }
+  },
+  "filters": {
+    "title": "Filter",
+    "titlePlural": "Filters",
+    "selectColumn": "Select column",
+    "statusPlaceholder": "Select value",
+    "statusEmpty": "---",
+    "emailPlaceholder": "email",
+    "reset": "Reset",
+    "apply": "Apply",
+    "name": "Name",
+    "description": "Description",
+    "code": "Code",
+    "organization": "Participant Name",
+    "participantType": "Participant Type",
+    "email": "Email",
+    "onboardingDate": "Onboarding Date",
+    "updateTimestamp": "Last Update Date",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "username": "Username"
+  },
+  "identityAttributesInfoPage": {
+    "title": "Attributes list",
+    "name": "Name",
+    "code": "Code",
+    "assignableToRoles": "Assignable to roles",
+    "updateTimestamp": "Last Synchronization Date",
+    "empty": "No Data",
+    "filters": {
+      "name": "Name",
+      "code": "Code",
+      "updateTimestamp": "Select date range",
+      "updateTimestampFrom": "Start Date",
+      "updateTimestampTo": "End Date",
+      "placeholder": {
+        "name": "Type a name",
+        "code": "Type a code"
+      },
+      "search": "Apply",
+      "reset": "Reset"
+    }
+  }
+}
