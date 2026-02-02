@@ -3,21 +3,30 @@ kind: Kustomization
 
 namespace: authority01
 
-# Generamos un ConfigMap por cada ruta (cada uno tiene su propio en.json)
 configMapGenerator:
   - name: onboarding-i18n
     files:
       - json/simpl-fe-onboarding/onboarding/en.json
-  - name: identity-provider-i18n
-    files:
       - json/simpl-fe-onboarding/identity-provider/en.json
-  - name: simpl-shell-i18n
-    files:
-      - json/simpl-fe-onboarding/simpl-shell/en.json
-  - name: sap-i18n
-    files:
       - json/simpl-fe-onboarding/sap/en.json
+      - json/simpl-fe-onboarding/simpl-shell/en.json
 
-# Parches que aplican los mounts al Deployment existente
-patchesStrategicMerge:
-  - patches/patch-simpl-fe-onboarding.yaml
+  # Puedes agregar más ConfigMaps para otros pods si quieres
+  - name: usersroles-i18n
+    files:
+      - json/simpl-fe-usersroles/onboarding/en.json
+      - json/simpl-fe-usersroles/sap/en.json
+      - json/simpl-fe-usersroles/simpl-shell/en.json
+
+patches:
+  # Patch para simpl-fe-onboarding
+  - target:
+      kind: Deployment
+      name: simpl-fe-onboarding
+    path: ../patches/patch-simpl-fe-onboarding.yaml
+
+  # Patch para simpl-fe-usersroles
+  - target:
+      kind: Deployment
+      name: simpl-fe-usersroles
+    path: ../patches/patch-simpl-fe-usersroles.yaml
