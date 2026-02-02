@@ -61,5 +61,5 @@ configMapGenerator:
       - en.json=json/simpl-fe-onboarding/participant-utility/en.json
 
 # Patch del Deployment existente (volúmenes y mounts para todos los módulos)
-patches:
+patch:
   - patches/patch-simpl-fe-onboarding.yaml
