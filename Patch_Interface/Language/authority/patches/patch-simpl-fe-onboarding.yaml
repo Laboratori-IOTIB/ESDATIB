@@ -10,52 +10,21 @@ spec:
         - name: onboarding-i18n
           configMap:
             name: onboarding-i18n
-        - name: identity-provider-i18n
+        - name: onboarding-i18n-ecl
           configMap:
-            name: identity-provider-i18n
-        - name: simpl-shell-i18n
+            name: onboarding-i18n-ecl
+        - name: onboarding-i18n-eui
           configMap:
-            name: simpl-shell-i18n
-        - name: sap-i18n
-          configMap:
-            name: sap-i18n
+            name: onboarding-i18n-eui
       containers:
-        - name: simpl-fe-onboarding    # <-- verifica este nombre en tu Deployment
+        - name: simpl-fe-onboarding
           volumeMounts:
-            # onboarding (tres variantes)
             - name: onboarding-i18n
               mountPath: /usr/share/nginx/html/onboarding/assets/i18n/en.json
               subPath: en.json
-            - name: onboarding-i18n
+            - name: onboarding-i18n-ecl
               mountPath: /usr/share/nginx/html/onboarding/assets/i18n-ecl/en.json
               subPath: en.json
-            - name: onboarding-i18n
+            - name: onboarding-i18n-eui
               mountPath: /usr/share/nginx/html/onboarding/assets/i18n-eui/en.json
-              subPath: en.json
-
-            # identity-provider (tres variantes)
-            - name: identity-provider-i18n
-              mountPath: /usr/share/nginx/html/identity-provider/assets/i18n/en.json
-              subPath: en.json
-            - name: identity-provider-i18n
-              mountPath: /usr/share/nginx/html/identity-provider/assets/i18n-ecl/en.json
-              subPath: en.json
-            - name: identity-provider-i18n
-              mountPath: /usr/share/nginx/html/identity-provider/assets/i18n-eui/en.json
-              subPath: en.json
-
-            # simpl-shell
-            - name: simpl-shell-i18n
-              mountPath: /usr/share/nginx/html/simpl-shell/assets/i18n/en.json
-              subPath: en.json
-
-            # sap (tres variantes)
-            - name: sap-i18n
-              mountPath: /usr/share/nginx/html/sap/assets/i18n/en.json
-              subPath: en.json
-            - name: sap-i18n
-              mountPath: /usr/share/nginx/html/sap/assets/i18n-ecl/en.json
-              subPath: en.json
-            - name: sap-i18n
-              mountPath: /usr/share/nginx/html/sap/assets/i18n-eui/en.json
               subPath: en.json
