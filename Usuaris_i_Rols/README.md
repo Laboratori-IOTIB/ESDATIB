@@ -22,7 +22,7 @@
 
 Per gestionar les credencials dels usuaris que utilitza cada agent, s’utilitza el servei de Tier-1 anomenat **Keycloak**. Aquest es trobarà a la URL:
 
- https://participant.be.<agent>.ibtourismdataspace.org/auth
+ https://participant.be.<agent>.<hostname>/auth
 
 Keycloak demana un **usuari** i una **contrasenya d'entrada**, que es poden obtenir al servei **OpenBao**, el Vault de secrets dels nostres agents.
 
@@ -41,11 +41,11 @@ Els serveis de l'agent **Provider** es poden classificar de la manera següent:
 
 | Funcionalitat | URL | Rol requerit |
 |---------------|-----|--------------|
-| Creació de keypairs, CSR i pujada de certificats x.509 | `https://participant.fe.dataprovider01.ibtourismdataspace.org/participant-utility/agent-configuration` | ONBOARDER_M, T1UAR_M |
-| Veure els atributs d'identitat | `https://participant.fe.dataprovider01.ibtourismdataspace.org/users-roles/identity-attributes-info` | T1UAR_M |
-| Assignar atributs d'identitat a rols | `https://participant.fe.dataprovider01.ibtourismdataspace.org/users-roles/roles` | T1UAR_M |
-| Creació de descripcions amb SD Tooling | `https://sd-ui.dataprovider01.ibtourismdataspace.org/` | CATALOG_R, SD_PUBLISHER |
-| Consulta al catàleg federat de dades | `https://catalogue-ui.dataprovider01.ibtourismdataspace.org/` | CATALOG_R, SD_PUBLISHER |
+| Creació de keypairs, CSR i pujada de certificats x.509 | `https://participant.fe.<agent>.<hostname>/participant-utility/agent-configuration` | ONBOARDER_M, T1UAR_M |
+| Veure els atributs d'identitat | `https://participant.fe.<agent>.<hostname>/users-roles/identity-attributes-info` | T1UAR_M |
+| Assignar atributs d'identitat a rols | `https://participant.fe.<agent>.<hostname>/users-roles/roles` | T1UAR_M |
+| Creació de descripcions amb SD Tooling | `https://sd-ui.<agent>.<hostname>/` | CATALOG_R, SD_PUBLISHER |
+| Consulta al catàleg federat de dades | `https://catalogue-ui.<agent>.<hostname>/` | CATALOG_R, SD_PUBLISHER |
 
 ---
 
@@ -61,7 +61,7 @@ Els serveis de l'agent **Consumer** es poden classificar de la següent manera:
 
 | Funcionalitat | URL | Rol requerit |
 |---------------|-----|--------------|
-| Creació de keypairs, CSR i pujada de certificats x.509 | `https://participant.fe.consumer01.ibtourismdataspace.org/participant-utility/agent-configuration` | ONBOARDER_M, T1UAR_M |
-| Veure els atributs d'identitat | `https://participant.fe.consumer01.ibtourismdataspace.org/users-roles/identity-attributes-info` | T1UAR_M |
-| Assignar atributs d'identitat a rols | `https://participant.fe.consumer01.ibtourismdataspace.org/users-roles/roles` | T1UAR_M |
-| Consulta al catàleg federat de dades | `https://catalogue-ui.consumer01.ibtourismdataspace.org/` | CATALOG_R, SD_CONSUMER |
+| Creació de keypairs, CSR i pujada de certificats x.509 | `https://participant.fe.<agent>.<hostname>/participant-utility/agent-configuration` | ONBOARDER_M, T1UAR_M |
+| Veure els atributs d'identitat | `https://participant.fe.<agent>.<hostname>/users-roles/identity-attributes-info` | T1UAR_M |
+| Assignar atributs d'identitat a rols | `https://participant.fe.<agent>.<hostname>/users-roles/roles` | T1UAR_M |
+| Consulta al catàleg federat de dades | `https://catalogue-ui.<agent>.<hostname>/` | CATALOG_R, SD_CONSUMER |
