@@ -1,6 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 
+namespace: authority01
 
-# ConfigMaps para cada ruta i18n, i18n-ecl, i18n-eui de cada módulo
+# ConfigMaps separados para cada ruta
 configMapGenerator:
   - name: onboarding-i18n
     files:
@@ -11,52 +14,7 @@ configMapGenerator:
   - name: onboarding-i18n-eui
     files:
       - en.json=json/simpl-fe-onboarding/onboarding/en.json
-  - name: simpl-shell-i18n
-    files:
-      - en.json=json/simpl-fe-onboarding/simpl-shell/en.json
-  - name: simpl-shell-i18n-ecl
-    files:
-      - en.json=json/simpl-fe-onboarding/simpl-shell/en.json
-  - name: simpl-shell-i18n-eui
-    files:
-      - en.json=json/simpl-fe-onboarding/simpl-shell/en.json
-  - name: sap-i18n
-    files:
-      - en.json=json/simpl-fe-onboarding/sap/en.json
-  - name: sap-i18n-ecl
-    files:
-      - en.json=json/simpl-fe-onboarding/sap/en.json
-  - name: sap-i18n-eui
-    files:
-      - en.json=json/simpl-fe-onboarding/sap/en.json
-  - name: identity-provider-i18n
-    files:
-      - en.json=json/simpl-fe-onboarding/identity-provider/en.json
-  - name: identity-provider-i18n-ecl
-    files:
-      - en.json=json/simpl-fe-onboarding/identity-provider/en.json
-  - name: identity-provider-i18n-eui
-    files:
-      - en.json=json/simpl-fe-onboarding/identity-provider/en.json
-  - name: usersandroles-i18n
-    files:
-      - en.json=json/simpl-fe-onboarding/usersandroles/en.json
-  - name: usersandroles-i18n-ecl
-    files:
-      - en.json=json/simpl-fe-onboarding/usersandroles/en.json
-  - name: usersandroles-i18n-eui
-    files:
-      - en.json=json/simpl-fe-onboarding/usersandroles/en.json
-  - name: participant-utility-i18n
-    files:
-      - en.json=json/simpl-fe-onboarding/participant-utility/en.json
-  - name: participant-utility-i18n-ecl
-    files:
-      - en.json=json/simpl-fe-onboarding/participant-utility/en.json
-  - name: participant-utility-i18n-eui
-    files:
-      - en.json=json/simpl-fe-onboarding/participant-utility/en.json
 
-# Patch del Deployment existente (volúmenes y mounts para todos los módulos)
+# Patch del Deployment existente (solo volumenes y mounts)
 resources:
-  - patches/patch-simpl-fe-onboarding.yaml
+  - patch-simpl-fe-onboarding-deployment.yaml
