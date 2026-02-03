@@ -22,7 +22,7 @@
 
 Per gestionar les credencials dels usuaris que utilitza cada agent, s’utilitza el servei de Tier-1 anomenat **Keycloak**. Aquest es trobarà a la URL:
 
- https://participant.be.<agent>.<hostname>/auth
+`https://participant.be.<agent>.<hostname>/auth`
 
 Keycloak demana un **usuari** i una **contrasenya d'entrada**, que es poden obtenir al servei **OpenBao**, el Vault de secrets dels nostres agents.
 
