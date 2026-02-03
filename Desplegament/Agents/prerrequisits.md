@@ -350,7 +350,7 @@ Comprovarem que s'ha desplegat correctament:
 kubectl get pods -n argocd
 ```
 
-En el cas que volguem tenir aquesta eina exposada a la internet pública via DNS (en el cas de què no s'hagi utilitzat l'arquitectura amb VPN)
+A continuació haurem de crear un objecte "Ingress" que assignara el nom de host amb la ip del Load Balancer.
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -378,6 +378,14 @@ spec:
         - "DNS host per argocd"
       secretName: argocd-tls
 ```
+
+Per aplicar el fitxer:
+
+```bash
+kubectl apply -f clusterissuer.yaml
+```
+
+Aquest ingrès està pensat pel cas que argocd estigui exposat a la internet pública. Si ho volguéssim deslpelgar en una arquitectura amb VPN llavors ja no podriem posar els camps de TLS i Cert-Manager. 
 
 ### Instruccions per desplegar aplicació
 
