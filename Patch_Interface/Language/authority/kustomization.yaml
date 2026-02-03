@@ -17,4 +17,4 @@ configMapGenerator:
 
 # Patch del Deployment existente (solo volumenes y mounts)
 resources:
-  - patch-simpl-fe-onboarding-deployment.yaml
+  - patches/patch-simpl-fe-onboarding-deployment.yaml
