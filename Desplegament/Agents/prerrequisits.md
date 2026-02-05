@@ -1,12 +1,32 @@
-- [Desplegament dels Prerrequisits](#desplegament-aplicació-amb-argocd)
-  - [Desplegament i configuració d'ingress nginx](#instal·lació-dargocd)
-  - [Desplegament i configuració d'ArgoCD](#instruccions-per-desplegar-laplicació)
-  - [Desplegament i configuració d'External DNS](#instruccions-per-desplegar-laplicació)
-  - [Desplegament i configuració de CertificateManager](#instruccions-per-desplegar-laplicació)
-  - [Desplegament i configuració de NFS CSI provisioner](#instruccions-per-desplegar-laplicació)
----
 
 # Desplegament dels Prerrequisits
+
+Aquest apartat es basa en la documentació oficial de [Simpl-Open](https://code.europa.eu/simpl/simpl-open/documentation).
+
+Són els serveis que donen suport a la resta dels serveis associats als agents.
+
+![Requeriments](../Imatges/serveisrequerits.png)
+
+Aquests tenen les següents funcionalitats:
+
+1. Ingress NGINX: actua com a controlador d’ingrés del clúster, gestionant l’accés extern als serveis desplegats a Kubernetes mitjançant regles HTTP/HTTPS. Permet exposar els serveis de manera segura i centralitzada, i facilita la gestió del trànsit d’entrada.
+
+2. Argo CD: eina de desplegament continu basada en el paradigma GitOps. S’encarrega de sincronitzar l’estat del clúster amb la configuració declarativa definida en repositoris Git, garantint desplegaments traçables, reproductibles i auditables. En el nostre cas, ArgoCD sincronitzarà els repositoris de [SIMPL-Open Europe](https://code.europa.eu/simpl), els quals contenen les versions de les aplicacions i serveis associats a cada agent, amb l'estat del clúster.
+
+3. External DNS: automatitza la creació i gestió dels registres DNS associats als serveis exposats del clúster. Permet actualitzar dinàmicament els registres DNS en funció dels serveis i ingressos desplegats.
+
+4. NFS CSI Provisioner: proveeix un Container Storage Interface (CSI) basat en NFS que permet la creació dinàmica de volums persistents, especialment útil per a volums amb accés compartit (ReadWriteMany).
+
+5. Certificate Manager: gestiona de manera automàtica l’emissió, renovació i ús de certificats digitals (per exemple, TLS/SSL) dins del clúster, facilitant la comunicació segura entre serveis i amb l’exterior.
+
+
+
+- [Desplegament i configuració d'ingress nginx](#desplegament-i-configuració-dingress-nginx)
+- [Desplegament i configuració d'External DNS](#desplegament-i-configuració-dexternal-dns)
+- [Desplegament i configuració d'ArgoCD](#desplegament-i-configuració-dargocd)
+- [Desplegament i configuració de CertificateManager](#desplegament-i-configuració-de-certificatemanager)
+- [Desplegament i configuració de NFS CSI provisioner](#desplegament-i-configuració-de-nfs-csi-provisioner)
+
 ## Desplegament i configuració d'ingress nginx
 
 Controlador d'ingrés basat en Nginx, gestiona el tràfic d’entrada HTTP/HTTPS cap a les aplicacions del clúster. Treballa conjuntament amb External DNS i Certificate Manager per exposar serveis de manera segura i automatitzada.
@@ -79,6 +99,8 @@ En el cas d'Azure, aquest LoadBalancer rep una ip pública automàticament. Si a
 de la IP pública, s'haurà de fer manualment.
 
 ---
+
+## Desplegament i configuració d'External DNS
 
 ### Prerequisits
 
@@ -200,7 +222,88 @@ kubectl -n external-dns logs -f \
   -l app.kubernetes.io/name=external-dns
 ```
 
-## Certificats TLS/SSL
+## Desplegament i configuració d'ArgoCD
+
+### Instal·lació d’ArgoCD
+
+ArgoCD es una eina DevOps que ens ajuda a sincronitzar amb els repositoris que contenen els Helm Charts i les imatges Docker que corresponen als serveis de SIMPL-Open.
+
+En primer lloc instal·larem l'eina dins un namespace:
+
+```bash
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
+
+Comprovarem que s'ha desplegat correctament:
+
+```bash
+kubectl get pods -n argocd
+```
+
+A continuació haurem de crear un objecte "Ingress" que assignara el nom de host amb la ip del Load Balancer.
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd-server
+  namespace: argocd
+  annotations:
+    cert-manager.io/cluster-issuer: "nom del cluster issuer fet per cert manager"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "DNS host per argocd"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  number: 443
+  tls:
+    - hosts:
+        - "DNS host per argocd"
+      secretName: argocd-tls
+```
+
+Per aplicar el fitxer:
+
+```bash
+kubectl apply -f clusterissuer.yaml
+```
+
+Aquest ingrès està pensat pel cas que argocd estigui exposat a la internet pública. Si ho volguéssim deslpelgar en una arquitectura amb VPN llavors ja no podriem posar els camps de TLS i Cert-Manager. 
+
+### Instruccions per desplegar aplicació
+
+Amb **ArgoCD** instal·lat al **clúster de Kubernetes**, la instal·lació de paquets i aplicacions es realitza mitjançant un arxiu de configuració `.yaml`, disponible a la carpeta `Arxius_Deployment`.
+
+> ⚠️ **Atenció:** Abans de realitzar el desplegament, cal revisar les seccions específiques de cada component.
+
+És **imprescindible** desplegar primer el paquet **COMMON** abans que qualsevol altre component.  
+Posteriorment, s’ha de desplegar l’agent corresponent i, un cop finalitzat aquest procés, si és necessari, es pot desplegar l’altre agent.
+
+> ⚠️ El paquet **COMMON** s’ha de desplegar només una vegada per entitat.  
+> Els agents **CONSUMER** i **PROVIDER** s’han de desplegar segons les necessitats de cada entitat.
+
+En tots els casos, el desplegament amb **ArgoCD** segueix el mateix procediment:
+
+1. Fer clic a **+ New App**
+2. Seleccionar **Edit as YAML**
+3. Copiar i enganxar l’arxiu de configuració `.yaml` corresponent
+4. Fer clic a **Save** per iniciar el desplegament de l’aplicació
+
+<!-- <p align="center">
+  <img src="Imatges/ArgoCd_Deploy_YAML.jpeg" alt="Desplegament d’ArgoCD amb YAML" height="400">
+</p> -->
+
+![Ingress](../Imatges/ArgoCd_Deploy_YAML.jpeg)
+
+## Desplegament i configuració de CertificateManager
 
 A aquesta secció veurem la configuració de les eines:
 
@@ -330,84 +433,3 @@ Eliminar els PVCs de Logstash:
 ```bash
 kubectl delete pvc -n common01 -l app=logstash-logstash-beats
 ```
-
-## Desplegament i configuració d'ArgoCD
-
-### Instal·lació d’ArgoCD
-
-ArgoCD es una eina DevOps que ens ajuda a sincronitzar amb els repositoris que contenen els Helm Charts i les imatges Docker que corresponen als serveis de SIMPL-Open.
-
-En primer lloc instal·larem l'eina dins un namespace:
-
-```bash
-kubectl create namespace argocd
-kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-```
-
-Comprovarem que s'ha desplegat correctament:
-
-```bash
-kubectl get pods -n argocd
-```
-
-A continuació haurem de crear un objecte "Ingress" que assignara el nom de host amb la ip del Load Balancer.
-
-```yaml
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: argocd-server
-  namespace: argocd
-  annotations:
-    cert-manager.io/cluster-issuer: "nom del cluster issuer fet per cert manager"
-spec:
-  ingressClassName: nginx
-  rules:
-    - host: "DNS host per argocd"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: argocd-server
-                port:
-                  number: 443
-  tls:
-    - hosts:
-        - "DNS host per argocd"
-      secretName: argocd-tls
-```
-
-Per aplicar el fitxer:
-
-```bash
-kubectl apply -f clusterissuer.yaml
-```
-
-Aquest ingrès està pensat pel cas que argocd estigui exposat a la internet pública. Si ho volguéssim deslpelgar en una arquitectura amb VPN llavors ja no podriem posar els camps de TLS i Cert-Manager. 
-
-### Instruccions per desplegar aplicació
-
-Amb **ArgoCD** instal·lat al **clúster de Kubernetes**, la instal·lació de paquets i aplicacions es realitza mitjançant un arxiu de configuració `.yaml`, disponible a la carpeta `Arxius_Deployment`.
-
-> ⚠️ **Atenció:** Abans de realitzar el desplegament, cal revisar les seccions específiques de cada component.
-
-És **imprescindible** desplegar primer el paquet **COMMON** abans que qualsevol altre component.  
-Posteriorment, s’ha de desplegar l’agent corresponent i, un cop finalitzat aquest procés, si és necessari, es pot desplegar l’altre agent.
-
-> ⚠️ El paquet **COMMON** s’ha de desplegar només una vegada per entitat.  
-> Els agents **CONSUMER** i **PROVIDER** s’han de desplegar segons les necessitats de cada entitat.
-
-En tots els casos, el desplegament amb **ArgoCD** segueix el mateix procediment:
-
-1. Fer clic a **+ New App**
-2. Seleccionar **Edit as YAML**
-3. Copiar i enganxar l’arxiu de configuració `.yaml` corresponent
-4. Fer clic a **Save** per iniciar el desplegament de l’aplicació
-
-<!-- <p align="center">
-  <img src="Imatges/ArgoCd_Deploy_YAML.jpeg" alt="Desplegament d’ArgoCD amb YAML" height="400">
-</p> -->
-
-![Ingress](../Imatges/ArgoCd_Deploy_YAML.jpeg)
