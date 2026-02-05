@@ -1,28 +1,34 @@
 # Procés de consum de dades a l'ESDATIB
 
-Aquest procés descriu com un agent **Consumer** pot accedir i consumir dades des de l’espai **ESDATIB**.
+L'agent consumidor pot consultar al catàleg de dades les descripcions publicades.
 
----
+![cerca](Imatges/cerca.png)
 
-## 1. Accés al catàleg
+Té 2 opcions de cerca:
 
-Els agents **Consumer** poden accedir al catàleg federat de dades utilitzant la seva URL corresponent:
+1. Cerca ràpida: Es filtra pel nom de la descripció publicada
+2. Cerca detallada: El consumidor té accés a filtres més detallats.
 
+De tota manera, en els dos casos, el consumidor només podrà veure les descripcions les polítiques d'accés de les quals li permeten.
 
-https://catalogue-ui.consumer01.{HostName} 
+![primera](Imatges/primera.png)
 
-L’accés requereix un **usuari i contrasenya** amb els rols corresponents, tal com es defineix a la secció d’**Usuaris i Rols**.  
+En entrar a una descripció podrem veure totes les metadates que va definir el proveïdor, així com les polítiques associades.
 
-> ℹ️ De manera inicial, l’usuari predefinit és: `m.b`
-
----
-
-## 2. Cerca de dades
+![politiques](Imatges/politiques.png)
 
 
+A més hi podem veure el botó de "Get Data" el qual iniciarà el procés de negociació del contracte.
 
----
+![negociacio](Imatges/negociacio.png)
 
-## 3. Selecció i consum de dades
+Haurem d'esperar a que aquest procés automàtic acabi.
+
+![acord](Imatges/acord.png)
+
+Per acabar, posarem l'endpoint que rebrà la transferència HTTP.
+
+![transf](Imatges/transferencia.png)
+
 
 
