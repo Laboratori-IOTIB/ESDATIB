@@ -30,14 +30,26 @@
 
 # ESDATIB – Espai de Dades Turístiques de les Illes Balears
 
-Web oficial: https://ibtourismdataspace.org/
+## Escenari Actual
 
-L’**ESDATIB (Espai de Dades Turístiques de les Illes Balears)** és una iniciativa orientada a centralitzar, visualitzar i facilitar l’accés a dades turístiques rellevants de les Illes Balears. Està pensada per donar servei a la comunitat, al teixit empresarial i a les administracions públiques, promovent un ús eficient, segur i interoperable de les dades.
+El sector turístic de les Illes Balears genera una gran quantitat de dades heterogènies (mobilitat, allotjament, consum, comportament del visitant), moltes de les quals es troben fragmentades en diferents empreses o infrautilitzades. Aquesta dispersió i desestructuració en la generació d'informació dificulta la generació de coneixement comú, impedeix la optimització de la gestió turística i la innovació basada en dades.
+
+Per donar solució a aquests problemes, es varen definir els espais de dades. Un espai de dades és un ecosistema on es poden realitzar intercanvis volutaris de dades dins d'un entorn soberà, segur, interoperable i eficient. 
+
+En el cas de les Illes Balears, l’**ESDATIB (Espai de Dades Turístiques de les Illes Balears)** és una iniciativa orientada a centralitzar, visualitzar i facilitar l’accés a dades turístiques rellevants de les Illes Balears. Està pensada per donar servei a la comunitat, al teixit empresarial i a les administracions públiques, promovent un ús eficient, segur i interoperable de les dades.
 
 Aquest repositori inclou els components i la documentació necessaris perquè les entitats puguin integrar-se i adherir-se a l’ESDATIB.
 
----
+Web oficial: https://ibtourismdataspace.org/
 
+---
+## Conceptes Fonamentals
+
+- **Gaia-X**: Iniciativa europea que defineix un marc de governança i estàndards per a la compartició segura, sobirana i interoperable de dades i serveis digitals entre organitzacions.
+- **Descripció de dades**: Conjunt de metadades que expliquen les característiques d’un conjunt de dades (origen, estructura, contingut, qualitat i condicions d’ús) per facilitar-ne la comprensió i reutilització.
+- **Gaia-X federated catalogue**: Catàleg de descripcions distribuït que permet registrar, descobrir i descriure serveis i conjunts de dades compatibles amb Gaia-X, garantint transparència, confiança i interoperabilitat.
+
+---
 ## Marc del Projecte
 
 En el context del creixement exponencial de les dades i de l’estratègia europea per impulsar una economia basada en les dades, les Illes Balears representen un cas especialment rellevant a causa del pes estratègic del sector turístic. La gestió eficient, segura i sostenible de les dades turístiques és clau per millorar la competitivitat del sector, garantir la sostenibilitat del territori i oferir serveis públics i privats de més qualitat.
@@ -63,23 +75,27 @@ A més, aquest desplegament posiciona les Illes Balears com un territori pilot i
 
 ## Arquitectura i marc tecnològic
 
-L’arquitectura base de l’ESDATIB es desenvolupa sobre **SIMPL OPEN**, una iniciativa europea que forma part del programa **SIMPL**.
+L’arquitectura base de l’ESDATIB es desenvolupa sobre **Simpl-Open**, una iniciativa europea que forma part del programa **Simpl**.
 
-🔗 Més informació sobre SIMPL:  
+🔗 Més informació sobre Simpl:  
 https://simpl-programme.ec.europa.eu/
 
-SIMPL OPEN proporciona una infraestructura que assegura:
-- Interoperabilitat entre sistemes i actors.
-- Governança de dades.
-- Sobirania i control dels participants.
-- Compliment dels principis europeus d’espais de dades.
+Simpl-Open incorpora les funcionalitats:
+
+- Incorporació, separació i gestió dels participants.
+- Definició de rols i atributs associats als participants.
+- Creació de descripcions de conjunts de dades.
+- Validació i publicació de les descripcions al catàleg federat.
+- Cerca de les descripcions al catàleg federat.
+- Transferència de dades entre agents.
+- Monitorització de totes les operacions entre agents.
 
 
-Al nucli dels espais de dades hi ha els cinc tipus d’actors que Simpl-Open considera. Aquests actors són una representació simbòlica d’una xarxa distribuïda de parts cooperants dins d’un ecosistema obert. Simpl-Open, representat pel Agent Simpl-Open, s’estén a través d’aquests actors i permet la compartició d’actius entre ells. Proporciona serveis comuns sobre els quals es poden construir els espais de dades.
+Al nucli dels espais de dades hi ha els cinc tipus d’actors que Simpl-Open considera. Aquests actors, anomenats SIMPL-Open Agents, són una representació simbòlica d’una xarxa distribuïda de parts cooperants dins un ecosistema obert. 
 
-Simpl-Open es manté agnòstic respecte a les particularitats d’un espai de dades concret, fet que permet afegir serveis específics de cada espai de dades per damunt de Simpl-Open. Aquesta capa addicional pot, per exemple, contenir estàndards de representació de dades, fer complir certificacions comunes de qualitat o definir normes de revisió entre iguals (peer review) per avaluar la qualitat de les dades. Els serveis específics de l’espai de dades adapten l’ecosistema més enllà de la simple compartició d’actius, assegurant que aquests actius esdevinguin valuosos per als participants.
+Simpl-Open es manté agnòstic respecte a les particularitats d’un espai de dades concret, fet que permet afegir serveis específics de cada espai de dades per damunt de Simpl-Open. Aquesta capa addicional pot, per exemple, contenir estàndards de representació de dades, fer complir certificacions comunes de qualitat o definir normes de revisió entre iguals (peer review) per avaluar la qualitat de les dades.
 
-Simpl-Open no només té com a objectiu ser utilitzat per construir espais de dades, sinó que també crea interoperabilitat entre diferents espais de dades. A mesura que múltiples espais de dades incorporen Simpl-Open, aquests esdevenen més connectats. Això permet que els serveis travessin els límits dels espais de dades específics. Inicialment, aquests serveis seran més limitats, ja que Simpl-Open no pot capturar els detalls de tots els espais de dades diferents. Correspondrà a l’usuari gestionar les especificitats de cada espai de dades a l’hora d’interpretar els actius que obté.
+De cara a un futur, Simpl-Open no només té com a objectiu ser utilitzat per construir espais de dades, sinó que també es té la intenció de crear interoperabilitat entre diferents espais de dades. A mesura que múltiples espais de dades incorporen Simpl-Open, aquests esdevenen més connectats.
 
 Per fer aquesta visió il·lustrativa més tangible, la figura següent presenta un exemple de com un conjunt d’actors distribuïts es podria interconnectar per formar un espai de dades. És important remarcar que aquesta figura mostra només un possible escenari entre moltes formes diferents d’interacció entre participants. El nombre de participants en un espai de dades, o el nombre de parts interessades darrere d’un sol actor, només està limitat per la viabilitat tècnica. Això implica que un gran nombre de participants i parts interessades poden interactuar simultàniament. L’Agent Simpl-Open que apareix a la figura serveix com a component abstracte que els actors han de desplegar per formar part de l’espai de dades.
 
@@ -87,14 +103,14 @@ Per fer aquesta visió il·lustrativa més tangible, la figura següent presenta
 
 ### Agents
 
-SIMPL OPEN es fonamenta en una estructura d’agents, on cadascun pot desenvolupar funcions específiques dins de l’espai de dades. Actualment, s’identifiquen tres tipus d’agents principals:
+Simpl-Open es basa en una estructura d’agents, on cadascun pot desenvolupar funcions específiques dins de l’espai de dades. Actualment, s’identifiquen tres tipus d’agents principals:
 
 - **CONSUMER**: són els actors que cerquen, accedeixen i utilitzen les dades posades a disposició pels proveïdors de dades. L’ús de les dades es realitza sempre d’acord amb les polítiques i condicions establertes pels proveïdors i amb el marc de governança definit per l’espai de dades.
 - **PROVIDER**: són els actors que ofereixen un o més conjunts de dades dins l’espai de dades. Aquests agents mantenen el control sobre les seves dades i en regulen l’ús mitjançant polítiques d’accés, condicions d’ús i requisits específics, assegurant que les dades es comparteixin de manera segura.
 - **AUTHORITY**: és el responsable de definir, crear, desenvolupar, operar i mantenir el framework de governança de l’espai de dades. Aquest agent vetlla pel compliment de les normes, polítiques i mecanismes comuns que regulen la compartició, l’accés, la seguretat i l’ús de les dades, garantint la confiança entre tots els participants. A més, s’encarrega de registrar els participants dins de l’espai de dades i de gestionar tant els certificats acreditatius com les credencials associades.
 
-En aquest cas, l’**agent de governança (AUTHORITY)** és desplegat per l’administració de l’ESDATIB.  
-Qualsevol altra entitat que vulgui adherir-se necessitarà desplegar els agents corresponents a les accions que desitgi realitzar, sent necessari disposar dels agents **CONSUMER** i **PROVIDER** per poder accedir i pujar dades dins de l’espai.
+En el nostre cas, l’**agent de governança (AUTHORITY)** és desplegat per l’administració de l’ESDATIB.  
+Qualsevol altra entitat que vulgui adherir-se necessitarà desplegar els agents corresponents a les accions que desitgi realitzar.
 
 A part dels agents principals, que permeten realitzar accions actives dins de l’espai, cada entitat necessita abans desplegar un **paquet comú**, anomenat **COMMON**.  
 Aquest paquet és necessari **una sola vegada per entitat**, i no per cada agent, i conté les configuracions i recursos bàsics que permeten que els agents funcionin correctament dins de l’ESDATIB.
@@ -108,11 +124,11 @@ Aquest paquet és necessari **una sola vegada per entitat**, i no per cada agent
 L’arquitectura **SIMPL OPEN** ha estat desenvolupada amb la intenció de ser desplegada en un **clúster de Kubernetes**.  
 Per aquest motiu, qualsevol entitat que vulgui adherir-se a l’ESDATIB i accedir a l’espai de dades haurà de disposar d’un **clúster de Kubernetes** operatiu on fer el desplegament.  
 
-El **component COMMON** i els agents necessaris per a l’entitat (**CONSUMER**, **PROVIDER** o ambdós) hauran de ser desplegats en aquest clúster, amb els arxius de configuració ja preparats per utilitzar l’eina **ArgoCD**.  
+El **component COMMON** i els agents necessaris per a l’entitat (**CONSUMER**, **PROVIDER** o ambdós) hauran de ser desplegats en aquest clúster.  
 
 Tot i això, el primer pas de sol·licitud d’adhesió a l’espai de dades **no requereix tenir habilitat el clúster ni haver desplegat cap agent**.  
 
-Es recomana utilitzar un **servei cloud**, ja que facilita el desplegament i el manteniment. L’equip de l’ESDATIB ha utilitzat el servei de **Azure**, que és on es pot oferir més suport.
+L’equip de l’ESDATIB ha utilitzat el servei de **Azure** per els desplegament de l'agent AUTHORITY. Aquesta guia està basada en l'experiència del desplegament dels agents en un clúster AKS. Tot i així, aquest desplegament està pensat perque funcioni en qualssevol altra tipus de clúster. Això sí, només si es compleixen els requisits que veurem a continuació.
 
 
 ### Requisits del clúster
@@ -123,9 +139,9 @@ Actualment, l’espai es troba en una fase primigènia i els requisits es manten
 
 | Components desplegats       | Worker Nodes | Persistent Volumes (RWO) | CPU per node | RAM per node |
 |-----------------------------|-------------|--------------------------|-------------|--------------|
-| Common + Consumer           | 3           | 11 GB                    | 4           | 16 GB        |
-| Common + Provider           | 3           | 11 GB                    | 4           | 16 GB        |
-| Common + Provider + Consumer| 4           | 11 GB                    | 4           | 16 GB        |
+| Common + Consumer           | 4           | 11 GB                    | 4           | 16 GB        |
+| Common + Provider           | 4           | 11 GB                    | 4           | 16 GB        |
+| Common + Provider + Consumer| 5           | 11 GB                    | 4           | 16 GB        |
 
 #### Requisits Producció
 
@@ -135,6 +151,8 @@ Actualment, l’espai es troba en una fase primigènia i els requisits es manten
 
 - **DNS / Hostname**  
   Cada entitat necessita un **domini** que s’utilitzarà com a base per crear les adreces dels diferents serveis dels agents dins de l’espai de dades.
+- **IP's públiques** \
+  Possibilitat d'assignar una o més ip's públiques.
 
 ### Arquitectures per a la infraestructura
 
