@@ -29,7 +29,7 @@
 </p>
 
 # ESDATIB – Espai de Dades Turístiques de les Illes Balears
-L
+
 ## Escenari Actual
 
 El sector turístic de les Illes Balears genera una gran quantitat de dades heterogènies (mobilitat, allotjament, consum, comportament del visitant), moltes de les quals es troben fragmentades en diferents empreses o infrautilitzades. Aquesta dispersió i desestructuració en la generació d'informació dificulta la generació de coneixement comú, impedeix la optimització de la gestió turística i la innovació basada en dades.
