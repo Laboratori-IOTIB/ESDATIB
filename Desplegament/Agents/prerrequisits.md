@@ -35,21 +35,20 @@ Controlador d'ingrés basat en Nginx, gestiona el tràfic d’entrada HTTP/HTTPS
 
 ### Instal·lació
 
+Per a entorns basats en **Azure (AKS)**, és obligatori afegir les anotacions de `health-probe` i `externalTrafficPolicy=Local`. Això permet a l'Azure Load Balancer validar correctament l'estat dels pods d'Nginx i evita errors de *Timeout* en l'accés des de l'exterior.
+
 ```bash
-helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo add ingress-nginx [https://kubernetes.github.io/ingress-nginx](https://kubernetes.github.io/ingress-nginx)
 helm repo update
 
 kubectl create namespace ingress-nginx
-helm install ingress-nginx ingress-nginx/ingress-nginx \
-    --namespace ingress-nginx \
-    --set controller.replicaCount=2 \
-    --set controller.nodeSelector."kubernetes\.io/os"=linux \
-    --set defaultBackend.nodeSelector."kubernetes\.io/os"=linux
-
 
 helm install ingress-nginx ingress-nginx/ingress-nginx \
   --namespace ingress-nginx --create-namespace \
-  --version 4.10.0
+  --version 4.10.0 \
+  --set controller.replicaCount=2 \
+  --set controller.service.externalTrafficPolicy=Local \
+  --set controller.service.annotations."service\.beta\.kubernetes\.io/azure-load-balancer-health-probe-request-path"= healthz
 ```
 
 L'eina tindrà el seu propi namespace. Comprovam que s'ha instal·lat correctament:
@@ -62,7 +61,7 @@ Hauria de sortir:
 
 ```bash
 NAME                                       READY   STATUS      RESTARTS   AGE
-ingress-nginx-admission-create-qhjcq       0/1     Completed   0          4d20h
+ingress-nginx -admission-create-qhjcq       0/1     Completed   0          4d20h
 ingress-nginx-admission-patch-s2695        0/1     Completed   0          4d20h
 ingress-nginx-controller-9cc49f96f-96xdq   1/1     Running     0          4d20h
 ```
@@ -374,7 +373,11 @@ Comprovarem que s'ha desplegat correctament:
 kubectl get pods -n argocd
 ```
 
-A continuació haurem de crear un objecte "Ingress" que assignara el nom de host amb la ip del Load Balancer. Per crear-lo, crearem un fitxer "clusterissuer.yaml" amb el següent contingut:
+A continuació haurem de crear un objecte "Ingress" que assignarà el nom de host amb la ip del Load Balancer. 
+
+A les darreres versions d'ArgoCD, l'aplicació força mesures de seguretat estrictes a nivell intern. És imprescindible afegir les anotacions `backend-protocol`, `proxy-ssl-verify` i `ssl-redirect` perquè el controlador Nginx es comuniqui correctament amb el pod d'ArgoCD per HTTPS i s'evitin errors d'accessibilitat com el **bucle de redireccions infinites (Error 307)**.
+
+Per crear-lo, crearem un fitxer anomenat `argocd-ingress.yaml` amb el següent contingut:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -384,6 +387,9 @@ metadata:
   namespace: argocd
   annotations:
     cert-manager.io/cluster-issuer: "nom del cluster issuer fet per cert manager"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/proxy-ssl-verify: "off"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   ingressClassName: nginx
   rules:
@@ -401,6 +407,7 @@ spec:
     - hosts:
         - "DNS host per argocd"
       secretName: argocd-tls
+            
 ```
 
 Per aplicar el fitxer: 
