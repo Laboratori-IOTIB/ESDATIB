@@ -199,7 +199,7 @@ helm upgrade --install external-dns bitnami/external-dns \
   --set azure.subscriptionId=$SUBSCRIPTION_ID \
   --set txtOwnerId=$CLUSTER_NAME \
   --set domainFilters={$DNS_ZONE_NAME} \
-  --set sources={ingress} \
+  --set sources={ingress,service} \
   --set azure.secretName=external-dns-azure-config \
   --set image.registry=registry.k8s.io \
   --set image.repository=external-dns/external-dns \
