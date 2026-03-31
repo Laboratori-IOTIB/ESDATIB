@@ -12,13 +12,13 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://code.europa.eu/api/v4/projects/903/packages/helm/stable' # URL oficial del repositori de Helm.
+    repoURL: ' https://gitlab.com/api/v4/projects/80314429/packages/helm/stable' # URL oficial del repositori de Helm.
     path: '""'
-    targetRevision: v2.4.1                  # Versió del paquet a desplegar (assegureu-vos que coincideixi amb la versió desitjada).
+    targetRevision: v1.0.13-SNAPSHOT.latest                 # Versió del paquet a desplegar (assegureu-vos que coincideixi amb la versió desitjada).
     helm:
       values: |
         values:
-          branch: v2.4.1                    # Branca del repositori amb els valors - per a versions publicades hauria de ser la branca de la release.
+          branch: v3.0.1                   # Branca del repositori amb els valors - per a versions publicades hauria de ser la branca de la release.
         project: default
         namespaceTag: 
           consumer: consumer01              # Identificador únic del desplegament i part del FQDN per a aquest agent Consumer.

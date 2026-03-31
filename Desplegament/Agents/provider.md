@@ -12,9 +12,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://code.europa.eu/api/v4/projects/904/packages/helm/stable'
+    repoURL: 'https://gitlab.com/api/v4/projects/80413413/packages/helm/stable'
     path: '""'
-    targetRevision: 3.0.2                   # versió del paquet Helm
+    targetRevision: 1.0.3-SNAPSHOT.9.5a5b54d8                   # versió del paquet Helm
     helm:
       values: |
         values:
@@ -56,3 +56,145 @@ spec:
     server: 'https://kubernetes.default.svc'
     namespace: dataprovider01               # namespace on es desplegarà el paquet
 ```
+
+Una vegada s'ha desplegat l'aplicació, hi haurà alguns pods que donaran error. Els pods que donaràn error són:
+tier2-proxy, tier2-gateway. Aquets s'arreglaràn quan s'hagi acabat de fer l'onboarding. 
+
+
+
+## Instal·lació de MinIO
+
+En cas que es vulgui instalar el minio, és pot seguir aquestes passes: 
+> **⚠️IMPORTANT:** En l'script i les explicacions següents utilitzarem **`dataprovider01`** com a exemple. Recordeu **substituir `dataprovider01` pel nom real del vostre namespace** a tot el fitxer YAML i a les rutes de configuració.
+
+### 1. Crear l'arxiu .yaml on copiarem l'script:
+
+```bash
+nano minio-setup.yaml
+```
+### 2. Copiar l'script:
+
+Un cop emplenat tots els camps amb la informació corresponent, es pot copiar tot l'script dins del fitxer .yaml creat anteriorment.
+
+```yaml
+# 1. L'EMMAGATZEMATGE (PVC - PersistentVolumeClaim)
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: minio-pvc-dades
+  namespace: dataprovider01      # Substituïu pel vostre namespace real
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi              # Modifiqueu la capacitat segons necessitat
+---
+# 2. EL DESPLEGAMENT (DEPLOYMENT)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minio-deployment
+  namespace: dataprovider01      # Substituïu pel vostre namespace real
+  labels:
+    app: minio-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minio-app
+  template:
+    metadata:
+      labels:
+        app: minio-app
+    spec:
+      containers:
+      - name: minio
+        image: minio/minio:latest
+        imagePullPolicy: Always
+        args:
+        - server
+        - /data
+        - --console-address
+        - :9001
+        env:
+        # Credencials d'accés: Aquests valors seran necessaris més endavant a OpenBao
+        - name: MINIO_ROOT_USER
+          value: el_teu_usuari   # Correspon a la variable 'access_key'
+        - name: MINIO_ROOT_PASSWORD
+          value: clau_segura_123 # Correspon a la variable 'secret_key'
+        ports:
+        - containerPort: 9000    # Port per a l'API de dades
+          protocol: TCP
+        - containerPort: 9001    # Port per a la interfície web (Consola)
+          protocol: TCP
+        volumeMounts:
+        - name: storage
+          mountPath: /data
+      volumes:
+      - name: storage
+        persistentVolumeClaim:
+          claimName: minio-pvc-dades
+---
+# 3. EL SERVEI DE XARXA (SERVICE)
+apiVersion: v1
+kind: Service
+metadata:
+  name: minio-servei
+  namespace: dataprovider01      # Substituïu pel vostre namespace real
+spec:
+  type: ClusterIP
+  selector:
+    app: minio-app
+  ports:
+    - name: api
+      port: 9000
+      targetPort: 9000
+    - name: console
+      port: 9001
+      targetPort: 9001
+---
+# 4. CONFIGURACIÓ DE L'ACCÉS EXTERN (INGRESS)
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minio-ingress
+  namespace: dataprovider01      # Substituïu pel vostre namespace real
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-azure # Emissor de certificats
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: minio.example.com    # Canvieu-ho pel domini base del vostre entorn
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: minio-servei
+                port:
+                  number: 9001   # Exposem el port 9001 per accedir a la consola web
+  tls:
+    - hosts:
+        - minio.example.com      # Mateix domini que a l'apartat 'rules'
+      secretName: minio-tls-cert
+```
+
+### 3. Executar l'script:
+
+```bash
+kubectl apply -f minio-setup.yaml
+```
+### 4. Canviar els valors de les variables.
+
+erquè els components puguin fer servir aquest servei de MinIO, cal configurar les credencials al motor de secrets. Aneu a la interfície d'OpenBao i navegueu fins a la ruta del vostre connector (per exemple: Common01 → dataprovider01-simpl-edc).
+
+Actualitzeu les tres variables següents perquè coincideixin amb la configuració que acabeu de desplegar al YAML:
+
+    -fr_gxfs_s3_access_key: Introduïu el valor que hàgiu posat a la variable MINIO_ROOT_USER.
+
+    -fr_gxfs_s3_secret_key: Introduïu el valor que hàgiu posat a la variable MINIO_ROOT_PASSWORD.
+
+    -fr_gxfs_s3_endpoint: Introduïu l'adreça DNS interna del clúster (és recomanable no utilitzar IPs fixes en entorns Kubernetes). Seguint l'exemple d'aquesta guia, el format correcte és:
+    http://minio-servei.dataprovider01.svc.cluster.local:9000

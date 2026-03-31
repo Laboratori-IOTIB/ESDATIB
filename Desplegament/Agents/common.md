@@ -15,11 +15,11 @@ spec:
   source:
     repoURL: 'https://code.europa.eu/api/v4/projects/951/packages/helm/stable'
     path: '""'
-    targetRevision: 2.4.2                           # Versió del paquet
+    targetRevision: 3.0.0                           # Versió del paquet
     helm:
       values: |
         values:
-          branch: v2.4.2                            # Branca del repositori amb els valors
+          branch: v3.0.0                            # Branca del repositori amb els valors
         resourcePreset: default                     # Estableix a "low" per deshabilitar les sol·licituds de recursos
         agentList:                                  # Llista de tots els agents a desplegar
           authorities:
@@ -63,3 +63,40 @@ spec:
     namespace: common01
 
 ```
+Per accedir a OpenBao per primera vegada, haurem de "treure" les credencials. Per fer-ho, haurem d'executar els següents comandes:
+
+Per trobar les unseal-keys:
+
+```bash
+kubectl get secret secrets-unseal-keys -n common01 -o go-template='{{range $k, $v := .data}}{{$k}}: {{$v | base64decode}}{{"\n"}}{{end}}'
+```
+
+Per trobar el token d'accés a OpenBao:
+
+```bash
+kubectl get secret secrets-root-token -n common01 -o go-template='{{range $k, $v := .data}}{{$k}}: {{$v | base64decode}}{{"\n"}}{{end}}'
+```
+
+Actualment, hi ha un error que, per solucionar-lo, s'ha d'executar un comando a la terminal d'OpenBao. El comando és el següent:
+
+```bash
+bao write auth/kubernetes/config \
+    kubernetes_host="<EL_TEU_KUBERNETES_HOST>" \
+    issuer="<EL_TEU_ISSUER>" \
+    disable_iss_validation=false
+```
+
+Per trobar els valors exactes que necessiteu per a l'ordre anterior, feu servir aquestes consultes:
+
+  · Per obtenir el valor de <EL_TEU_KUBERNETES_HOST>:
+
+  ```bash
+  kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}{"\n"}'
+  ```
+
+  · Per obtenir el valor de <EL_TEU_ISSUER>:
+
+  ```bash
+  az aks show -g GRUP_DE_RECURSOS -n NOM_DEL_CLUSTER --query "oidcIssuerProfile.issuerUrl" -o tsv
+  ```
+
