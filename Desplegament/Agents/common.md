@@ -55,4 +55,11 @@ spec:
         monitoring:
           # Estableix aquest valor a true per habilitar les funcions de monitoratge
           enabled: true 
+    chart: common_components
+  destination:
+    # FQDN Fully Qualified Domain Name of your kubernetes cluster
+    server: 'https://kubernetes.default.svc'
+    # Name of the Kubernetes NameSpace in which the Common Tools will be deployed
+    namespace: common01
+
 ```

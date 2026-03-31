@@ -3,7 +3,7 @@ Aquest document descriu el fitxer YAML utilitzat per crear una **Application d�
 Aquest és el fitxer que s’introdueix a **Argo CD → New App → Edit as YAML**.
 
 ## YAML de l’Application (Argo CD)
-```
+```yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -14,11 +14,11 @@ spec:
   source:
     repoURL: 'https://code.europa.eu/api/v4/projects/904/packages/helm/stable'
     path: '""'
-    targetRevision: 2.4.1                   # versió del paquet Helm
+    targetRevision: 3.0.2                   # versió del paquet Helm
     helm:
       values: |
         values:
-          branch: v2.4.1                    # branca del repositori de valors (en versions alliberades ha de ser la branca de release)
+          branch: v3.0.2                    # branca del repositori de valors (en versions alliberades ha de ser la branca de release)
         project: default
         namespaceTag:
           dataprovider: dataprovider01      # identificador del desplegament i part del FQDN del Data Provider
@@ -50,6 +50,7 @@ spec:
                                             
         monitoring:
           enabled: true                     # indica si el monitoratge ha d'estar activat
+
     chart: data-provider
   destination:
     server: 'https://kubernetes.default.svc'
