@@ -1,5 +1,5 @@
 
-Aquest document descriu el fitxer YAML utilitzat per crear una **Application d’Argo CD** mitjançant Helm.
+Aquest document descriu el fitxer YAML utilitzat per crear una **Aplicació d'Argo CD** mitjançant Helm.
 Aquest és el fitxer que s’introdueix a **Argo CD → New App → Edit as YAML**.
 
 ## YAML de l’Application (Argo CD)
@@ -57,24 +57,24 @@ spec:
     namespace: dataprovider01               # namespace on es desplegarà el paquet
 ```
 
-Una vegada s'ha desplegat l'aplicació, hi haurà alguns pods que donaran error. Els pods que donaràn error són:
-tier2-proxy, tier2-gateway. Aquets s'arreglaràn quan s'hagi acabat de fer l'onboarding. 
+Una vegada s'ha desplegat l'aplicació, hi haurà alguns pods que donaran error. Els pods que donaran error són:
+tier2-proxy, tier2-gateway. Aquests s'arreglaran quan s'hagi acabat de fer l'onboarding. 
 
 
 
 ## Instal·lació de MinIO
 
-En cas que es vulgui instalar el minio, és pot seguir aquestes passes: 
+En cas que es vulgui instal·lar el minio, es pot seguir aquests passos: 
 > **⚠️IMPORTANT:** En l'script i les explicacions següents utilitzarem **`dataprovider01`** com a exemple. Recordeu **substituir `dataprovider01` pel nom real del vostre namespace** a tot el fitxer YAML i a les rutes de configuració.
 
-### 1. Crear l'arxiu .yaml on copiarem l'script:
+### 1. Crear el fitxer .yaml on copiarem l'script:
 
 ```bash
 nano minio-setup.yaml
 ```
 ### 2. Copiar l'script:
 
-Un cop emplenat tots els camps amb la informació corresponent, es pot copiar tot l'script dins del fitxer .yaml creat anteriorment.
+Un cop emplenats tots els camps amb la informació corresponent, es pot copiar tot l'script dins del fitxer .yaml creat anteriorment.
 
 ```yaml
 # 1. L'EMMAGATZEMATGE (PVC - PersistentVolumeClaim)

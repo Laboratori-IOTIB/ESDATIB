@@ -1,4 +1,4 @@
-Aquest document descriu el fitxer YAML utilitzat per crear una **Application d’Argo CD** mitjançant Helm.
+Aquest document descriu el fitxer YAML utilitzat per crear una **Aplicació d'Argo CD** mitjançant Helm.
 Aquest és el fitxer que s’introdueix a **Argo CD → New App → Edit as YAML**.
 
 Aquesta guia serveix per ajudar les entitats que volen desplegar l'agent **Common**. A continuació es detallen els paràmetres de configuració:
@@ -57,13 +57,13 @@ spec:
           enabled: true 
     chart: common_components
   destination:
-    # FQDN Fully Qualified Domain Name of your kubernetes cluster
+    # FQDN (Nom de domini completament qualificat) del teu clúster de Kubernetes
     server: 'https://kubernetes.default.svc'
-    # Name of the Kubernetes NameSpace in which the Common Tools will be deployed
+    # Nom del Namespace de Kubernetes on es desplegaran les Common Tools
     namespace: common01
 
 ```
-Per accedir a OpenBao per primera vegada, haurem de "treure" les credencials. Per fer-ho, haurem d'executar els següents comandes:
+Per accedir a OpenBao per primera vegada, haurem de "treure" les credencials. Per fer-ho, haurem d'executar les següents ordres:
 
 Per trobar les unseal-keys:
 
@@ -77,7 +77,7 @@ Per trobar el token d'accés a OpenBao:
 kubectl get secret secrets-root-token -n common01 -o go-template='{{range $k, $v := .data}}{{$k}}: {{$v | base64decode}}{{"\n"}}{{end}}'
 ```
 
-Actualment hi ha un error que, per solucionar-lo, s'ha d'executar un comando a la terminal d'OpenBao. El comando és el següent:
+Actualment hi ha un error que, per solucionar-lo, s'ha d'executar una ordre a la terminal d'OpenBao. L'ordre és la següent:
 
 ```bash
 bao write auth/kubernetes/config \

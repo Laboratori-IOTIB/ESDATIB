@@ -1,4 +1,4 @@
-Aquest document descriu el fitxer YAML utilitzat per crear una **Application d’Argo CD** mitjançant Helm.
+Aquest document descriu el fitxer YAML utilitzat per crear una **Aplicació d'Argo CD** mitjançant Helm.
 Aquest és el fitxer que s’introdueix a **Argo CD → New App → Edit as YAML**.
 
 Aquesta guia serveix per ajudar les entitats que volen desplegar l'agent **Consumer**. A continuació es detallen els paràmetres de configuració:
@@ -12,7 +12,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: ' https://gitlab.com/api/v4/projects/80314429/packages/helm/stable' # URL oficial del repositori de Helm.
+    repoURL: 'https://gitlab.com/api/v4/projects/80314429/packages/helm/stable' # URL oficial del repositori de Helm.
     path: '""'
     targetRevision: v1.0.13-SNAPSHOT.latest                 # Versió del paquet a desplegar (assegureu-vos que coincideixi amb la versió desitjada).
     helm:

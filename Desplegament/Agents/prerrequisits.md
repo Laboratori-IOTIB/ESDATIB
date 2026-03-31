@@ -29,7 +29,7 @@ Aquests tenen les següents funcionalitats:
 
 ## Desplegament i configuració d'ingress nginx
 
-Controlador d'ingrés basat en Nginx, gestiona el tràfic d’entrada HTTP/HTTPS cap a les aplicacions del clúster. Treballa conjuntament amb External DNS i Certificate Manager per exposar serveis de manera segura i automatitzada.
+Controlador d'ingrés basat en Nginx, gestiona el trànsit d’entrada HTTP/HTTPS cap a les aplicacions del clúster. Treballa conjuntament amb External DNS i Certificate Manager per exposar serveis de manera segura i automatitzada.
 
 ![Ingress](../Imatges/ingress.png)
 
@@ -51,7 +51,7 @@ helm install ingress-nginx ingress-nginx/ingress-nginx \
   --set controller.service.annotations."service\.beta\.kubernetes\.io/azure-load-balancer-health-probe-request-path"= healthz
 ```
 
-L'eina tindrà el seu propi namespace. Comprovam que s'ha instal·lat correctament:
+L'eina tindrà el seu propi namespace. Comprovem que s'ha instal·lat correctament:
 
 ```bash
 kubectl get pods -n ingress-nginx
@@ -66,7 +66,7 @@ ingress-nginx-admission-patch-s2695        0/1     Completed   0          4d20h
 ingress-nginx-controller-9cc49f96f-96xdq   1/1     Running     0          4d20h
 ```
 
-A continuació comprovarem l'IP extern o port del controlador ingress
+A continuació comprovarem la IP externa o port del controlador ingress
 
 ```bash
 kubectl get svc -n ingress-nginx
@@ -139,7 +139,7 @@ IDENTITY_CLIENT_ID=$(az aks show \
   --query identityProfile.kubeletidentity.clientId \
   -o tsv)
 ```
-2. Assignar permissos a la identidad del clúster
+2. Assignar permisos a la identitat del clúster
    
 External-DNS necessita permisos sobre la zona DNS per poder crear i actualitzar registres.
 
@@ -150,7 +150,7 @@ az role assignment create \
   --scope "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$DNS_ZONE_RG"
 ```
 > ⚠️ **Atenció:**  
-> Si la vostra subscripció **no permet assignar rols**, aquesta comanda retornarà error.  
+> Si la vostra subscripció **no permet assignar rols**, aquesta ordre retornarà error.  
 > En aquest cas, un administrador d’Azure haurà de realitzar l’assignació manualment.
 
 
@@ -224,7 +224,7 @@ kubectl -n external-dns logs -f \
 
 ## Desplegament i configuració de CertificateManager
 
-A aquesta secció veurem la configuració de les eines:
+En aquesta secció veurem la configuració de les eines:
 
 1. Let's Encrypt
 2. NGINX
@@ -236,11 +236,11 @@ amb els serveis del clúster.
 Tot i que hi ha l'opció d'elegir una arquitectura amb VPN, la qual fa que els serveis no estiguin exposats a la internet pública, hi ha una sèrie de serveis
 que sempre hi estaran exposats.
 
-La combinació d'aquestes eines assegura tant l'obtenció com la renovació dels certificats, minimitzant la intervenció nostra en el procés.
+La combinació d'aquestes eines assegura tant l'obtenció com la renovació dels certificats, minimitzant la nostra intervenció en el procés.
 
 ### Cert Manager
 
-En primer lloc instal·larem cert manager amb la comanda:
+En primer lloc instal·larem Cert Manager amb l'ordre:
 
 ```bash
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/latest/download/cert-manager.yaml
@@ -251,7 +251,7 @@ Haurem de comprovar que tot està en marxa:
 ```bash
 kubectl get pods -n cert-manager
 ```
-Hauriem de poder veure el següent:
+Hauríem de poder veure el següent:
 
 ![Pods](../Imatges/podscert.png)
 
@@ -278,7 +278,7 @@ spec:
             clientID: "Id del client"
 ```
 
-En el cas d'Azure, la id de la subscripció la trobarem a la secció "Suscripciones":
+En el cas d'Azure, la ID de la subscripció la trobarem a la secció "Subscripcions":
 
 ![Suscripciones](../Imatges/suscripciones.png)
 
@@ -291,7 +291,7 @@ Ara ja només queda aplicar el yaml que conté el ClusterIssuer:
 ```bash
 kubectl apply -f clusterissuer.yaml
 ```
-A l'hora de desplegar els agents veurem les passes que segueixen aquesta preconfiguració.
+A l'hora de desplegar els agents veurem els passos que segueixen aquesta preconfiguració.
 
 ## Desplegament i configuració de NFS CSI provisioner
 
@@ -358,7 +358,7 @@ kubectl delete pvc -n common01 -l app=logstash-logstash-beats
 
 ### Instal·lació d’ArgoCD
 
-ArgoCD es una eina DevOps que ens ajuda a sincronitzar amb els repositoris que contenen els Helm Charts i les imatges Docker que corresponen als serveis de SIMPL-Open.
+ArgoCD és una eina DevOps que ens ajuda a sincronitzar amb els repositoris que contenen els Helm Charts i les imatges Docker que corresponen als serveis de SIMPL-Open.
 
 En primer lloc instal·larem l'eina dins un namespace:
 
@@ -416,11 +416,9 @@ Per aplicar el fitxer:
 kubectl apply -f clusterissuer.yaml
 ```
 
-Aquest ingrès està pensat pel cas que argocd estigui exposat a la internet pública. Si ho volguéssim deslpelgar en una arquitectura amb VPN llavors ja no podriem posar els camps de TLS i Cert-Manager. 
+Aquest ingrés està pensat pel cas que argocd estigui exposat a la internet pública. Si ho volguéssim desplegar en una arquitectura amb VPN llavors ja no podriem posar els camps de TLS i Cert-Manager. 
 
-### Instruccions per desplegar aplicació
-
-Amb **ArgoCD** instal·lat al **clúster de Kubernetes**, la instal·lació de paquets i aplicacions es realitza mitjançant un arxiu de configuració `.yaml`, disponible a la carpeta `Arxius_Deployment`.
+Amb **ArgoCD** instal·lat al **clúster de Kubernetes**, la instal·lació de paquets i aplicacions es realitza mitjançant un fitxer de configuració `.yaml`, disponible a la carpeta `Arxius_Deployment`.
 
 > ⚠️ **Atenció:** Abans de realitzar el desplegament, cal revisar les seccions específiques de cada component.
 
@@ -434,7 +432,7 @@ En tots els casos, el desplegament amb **ArgoCD** segueix el mateix procediment:
 
 1. Fer clic a **+ New App**
 2. Seleccionar **Edit as YAML**
-3. Copiar i enganxar l’arxiu de configuració `.yaml` corresponent
+3. Copiar i enganxar el fitxer de configuració `.yaml` corresponent
 4. Fer clic a **Save** per iniciar el desplegament de l’aplicació
 
 <!-- <p align="center">
