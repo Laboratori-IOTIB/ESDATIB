@@ -77,7 +77,7 @@ Per trobar el token d'accés a OpenBao:
 kubectl get secret secrets-root-token -n common01 -o go-template='{{range $k, $v := .data}}{{$k}}: {{$v | base64decode}}{{"\n"}}{{end}}'
 ```
 
-Actualment, hi ha un error que, per solucionar-lo, s'ha d'executar un comando a la terminal d'OpenBao. El comando és el següent:
+Actualment hi ha un error que, per solucionar-lo, s'ha d'executar un comando a la terminal d'OpenBao. El comando és el següent:
 
 ```bash
 bao write auth/kubernetes/config \

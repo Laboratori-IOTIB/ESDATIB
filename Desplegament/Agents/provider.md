@@ -188,7 +188,7 @@ kubectl apply -f minio-setup.yaml
 ```
 ### 4. Canviar els valors de les variables.
 
-erquè els components puguin fer servir aquest servei de MinIO, cal configurar les credencials al motor de secrets. Aneu a la interfície d'OpenBao i navegueu fins a la ruta del vostre connector (per exemple: Common01 → dataprovider01-simpl-edc).
+Perquè els components puguin fer servir aquest servei de MinIO, cal configurar les credencials al motor de secrets. Aneu a la interfície d'OpenBao i navegueu fins a la ruta del vostre connector (per exemple: Common01 → dataprovider01-simpl-edc → Create new version).
 
 Actualitzeu les tres variables següents perquè coincideixin amb la configuració que acabeu de desplegar al YAML:
 
