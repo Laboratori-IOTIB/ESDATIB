@@ -1,4 +1,4 @@
-Aquest document conté una guia sobre l'ordre en què s'ha de depesplegar l'arquitectura i les instruccions per configurar les entitats necessàries. S'explica com desplegar els prerrequisits i els agents (Common, Consumer i Provider).
+Aquest document conté una guia sobre l'ordre en què s'ha de depesplegar l'arquitectura. S'explica com desplegar els prerrequisits i els agents (Common, Consumer i Provider).
 
 ---
 # Ordre del desplegament
@@ -9,18 +9,4 @@ Aquest document conté una guia sobre l'ordre en què s'ha de depesplegar l'arqu
 4. [Consumer Agent](Agents/consumer.md) 
 
 
-# Configuració dels Agents
 
----
-
-Consulta la **[Guia Configuració Agent COMMON](Agents/common.md)**.
-
----
-
-Consulta la **[Guia Configuració Agent CONSUMER](Agents/consumer.md)**.
-
----
-
-Consulta la **[Guia Configuració Agent PROVIDER](Agents/provider.md)**.
-
----
