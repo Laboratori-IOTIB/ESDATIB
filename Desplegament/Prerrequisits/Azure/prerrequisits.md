@@ -5,7 +5,7 @@ Aquest apartat es basa en la documentació oficial de [Simpl-Open](https://code.
 
 Són els serveis que donen suport a la resta dels serveis associats als agents.
 
-![Requeriments](../Imatges/serveisrequerits.png)
+![Requeriments](../../Imatges/serveisrequerits.png)
 
 Aquests tenen les següents funcionalitats:
 
@@ -31,7 +31,7 @@ Aquests tenen les següents funcionalitats:
 
 Controlador d'ingrés basat en Nginx, gestiona el trànsit d’entrada HTTP/HTTPS cap a les aplicacions del clúster. Treballa conjuntament amb External DNS i Certificate Manager per exposar serveis de manera segura i automatitzada.
 
-![Ingress](../Imatges/ingress.png)
+![Ingress](../../Imatges/ingress.png)
 
 ### Instal·lació
 
@@ -253,7 +253,7 @@ kubectl get pods -n cert-manager
 ```
 Hauríem de poder veure el següent:
 
-![Pods](../Imatges/podscert.png)
+![Pods](../../Imatges/podscert.png)
 
 A continuació haurem de crear un objecte "ClusterIssuer". Aquest ens ajudarà a demostrar que som propietaris del nostre DNS:
 
@@ -280,11 +280,11 @@ spec:
 
 En el cas d'Azure, la ID de la subscripció la trobarem a la secció "Subscripcions":
 
-![Suscripciones](../Imatges/suscripciones.png)
+![Suscripciones](../../Imatges/suscripciones.png)
 
 En canvi, el client id, el trobarem al recurs de la nostra suscripció:
 
-![ClientId](../Imatges/clientId.png)
+![ClientId](../../Imatges/clientId.png)
 
 Ara ja només queda aplicar el yaml que conté el ClusterIssuer:
 
@@ -439,4 +439,4 @@ En tots els casos, el desplegament amb **ArgoCD** segueix el mateix procediment:
   <img src="Imatges/ArgoCd_Deploy_YAML.jpeg" alt="Desplegament d’ArgoCD amb YAML" height="400">
 </p> -->
 
-![Ingress](../Imatges/ArgoCd_Deploy_YAML.jpeg)
+![Ingress](../../Imatges/ArgoCd_Deploy_YAML.jpeg)
