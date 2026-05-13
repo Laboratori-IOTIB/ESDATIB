@@ -14,7 +14,7 @@ spec:
   source:
     repoURL: 'https://gitlab.com/api/v4/projects/80314429/packages/helm/stable' # URL oficial del repositori de Helm.
     path: '""'
-    targetRevision: v1.0.13-SNAPSHOT.latest                 # Versió del paquet a desplegar (assegureu-vos que coincideixi amb la versió desitjada).
+    targetRevision: 1.0.17-SNAPSHOT.41.2bf317d3                 # Versió del paquet a desplegar (assegureu-vos que coincideixi amb la versió desitjada).
     helm:
       values: |
         values:
@@ -22,9 +22,10 @@ spec:
         project: default
         namespaceTag: 
           consumer: consumer01              # Identificador únic del desplegament i part del FQDN per a aquest agent Consumer.
-          authority: authority01            # Identificador del desplegament de l'Authority (ha de coincidir amb l'entorn).
+          authority: authority01            # Identificador del desplegament de l'Authority (NO MODIFICAR).
           common: common01                  # Identificador del desplegament dels components comuns (Common).
         domainSuffix: example.com           # Darrera part del FQDN (sufix del domini). Modifiqueu-ho pel vostre domini.
+        domainSuffixAuth: ibtourismdataspace.org  #(NO MODIFICAR) 
         resourcePreset: default             # Estableix a "low" per deshabilitar les sol·licituds de recursos (requests) si l'entorn és limitat.
         argocd:
           appname: consumer01               # Nom de l'aplicació ArgoCD que es generarà automàticament.
