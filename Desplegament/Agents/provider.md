@@ -199,3 +199,39 @@ Actualitzeu les tres variables següents perquè coincideixin amb la configuraci
 
     -fr_gxfs_s3_endpoint: Introduïu l'adreça DNS interna del clúster (és recomanable no utilitzar IPs fixes en entorns Kubernetes). Seguint l'exemple d'aquesta guia, el format correcte és:
     http://minio-servei.dataprovider01.svc.cluster.local:9000
+
+---
+
+## Entorn Local: Configuració Ingress addicional
+
+Si el proveïdor no té obert el port 19194 (necessari per a la negociació de contractes amb el consumer) per restriccions de tallafocs (per exemple, si només es permeten els ports 443 i alguns específics), cal afegir un Ingress per actuar com a pont.
+
+Aquest Ingress rep la petició pel port estàndard HTTPS (443) i la redirigeix internament per al correcte funcionament de l'EDC, saltant-se així la restricció del tallafocs.
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tier2
+  namespace: dataprovider01
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+spec:
+  rules:
+  - host: tls.participant.dataprovider01.<EL_TEU_DOMINI>
+    http:
+      paths:
+      - backend:
+          service:
+            name: tier2-gateway
+            port:
+              number: 443
+        path: /
+        pathType: ImplementationSpecific
+```
+
+### Punts clau de la configuració de l'Ingress
+
+- **Múltiplex de ports (443 → 19194)**: El punt més crític a nivell d'infraestructura. Com que en aquests entorns normalment només es permet el trànsit pel port **443**, l'Ingress actua com un pont: rep la petició pel port estàndard de navegació (HTTPS) i la redirigeix internament al port de l'EDC, saltant-se així la restricció del tallafocs extern.
+- **`pathType: ImplementationSpecific`**: Necessari quan fem servir reescritures de rutes i expressions regulars complexes en Nginx, ja que ens dóna la flexibilitat que els tipus `Prefix` o `Exact` no permeten.

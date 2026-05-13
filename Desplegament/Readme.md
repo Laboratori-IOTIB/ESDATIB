@@ -7,12 +7,12 @@ Aquest document conté una guia sobre l'ordre en què s'ha de depesplegar l'arqu
    
 El desplegament d’ESDATIB s’ha realitzat en un clúster AKS a Azure, on es pot oferir més suport. Per seguir la guia en aquest entorn:
 
-[Prerrequisits Mínims Azure](Prerrequisits/Azure/prerrequisits.md)
+[Prerrequisits Mínims Azure](Prerrequisits/prerrequisits-azure.md)
 
 
 Tot i així, també es presenta una guia per establir un clúster de Kubernetes amb K3s fora d’Azure:
 
-[Prerrequisits Mínims Local](Prerrequisits/Local/prerrequisits.md)
+[Prerrequisits Mínims Local](Prerrequisits/prerrequisits-local.md)
 
 Un cop desplegats els prerrequisits, el procés de desplegament continua de manera pràcticament idèntica en tots els entorns.
 

@@ -45,3 +45,34 @@ spec:
     server: 'https://kubernetes.default.svc' # Servidor de destinació (el mateix clúster on s'executa ArgoCD).
     namespace: consumer01                   # Namespace on es desplegarà el paquet helm inicial.
 ```
+
+---
+
+## Entorn Local: Configuració Ingress addicional
+
+Per tal de poder veure el catàleg i començar els contractes amb el proveïdor d'un *asset* en concret, s'ha d'anar a la URL del consumer `.../users-roles` i assignar a l'usuari els rols `CATALOG_R` i `SD_CONSUMER`.
+
+Si el tallafocs del vostre entorn té restriccions (per exemple, només permet l'obertura dels ports 443 i alguns d'específics per a descàrrega d'imatges), i voleu que els usuaris puguin prémer el botó "Obtenir dades" per negociar el contracte correctament, cal afegir el següent Ingress per permetre el trànsit necessari de l'EDC:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tier2
+  namespace: consumer01
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+spec:
+  rules:
+  - host: tls.participant.consumer01.<EL_TEU_DOMINI>
+    http:
+      paths:
+      - backend:
+          service:
+            name: tier2-gateway
+            port:
+              number: 443
+        path: /
+        pathType: ImplementationSpecific
+```
