@@ -14,7 +14,7 @@ spec:
   source:
     repoURL: 'https://gitlab.com/api/v4/projects/80413413/packages/helm/stable'
     path: '""'
-    targetRevision: 1.0.3-SNAPSHOT.9.5a5b54d8                   # versió del paquet Helm
+    targetRevision: 1.0.7-SNAPSHOT.29.6825468d                   # versió del paquet Helm
     helm:
       values: |
         values:
@@ -25,6 +25,7 @@ spec:
           authority: authority01            # identificador del desplegament i part del FQDN de l'autoritat
           common: common01                  # identificador del desplegament i part del FQDN dels components comuns
         domainSuffix: example.com           # part final del FQDN (domini base de l'entorn)
+        domainSuffixAuth: ibtourismdataspace.org # No modificar  
         resourcePreset: default             # establir a "low" per no definir requests de recursos
         argocd:
           appname: dataprovider01           # nom de l'aplicació generada a Argo CD
