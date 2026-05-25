@@ -70,34 +70,42 @@ Els serveis de l'agent **Consumer** es poden classificar de la següent manera:
 
 # Com canviar les contrasenyes dels usuaris de l'agent
 
-**1. Trobar el pod de keycloak de l'agent.**
+## 1. Accedir a Keycloak
 
-1.1 Entrar a argocd
+### 1.1 Trobar el pod de Keycloak via ArgoCD
+- Entrar a **ArgoCD**
+- Navegar dins l'agent
+- Localitzar el pod de **Keycloak**
 
-1.2 Entrar dins l'agent
+### 1.2 Obtenir la URL de Keycloak
+- Fer clic al pod i anar a la pestanya **Summary**
+- Al YAML, cercar la variable `KC_HOSTNAME_ADMIN` i copiar-ne el valor (primera URL)
 
-1.3 Cercar el pod
+### 1.3 Obtenir les credencials d'accés des d'OpenBao
+- Entrar a **OpenBao**
+- `Common01` → `<namespace-de-l'agent>-keycloak`
+- L'usuari és la **key** i la contrasenya el **value**
 
-**2. Trobar la url de keycloak**
+## 2. Canviar la contrasenya
 
-2.1 Pitjar damunt el pod i anar a "summary" (sengos la vista seleccionada només caldrà pitjar damunt el pod)
+### 2.1 Iniciar sessió a Keycloak
+- Obrir la URL obtinguda al pas 1.2
+- Introduir usuari i contrasenya del pas 1.3
 
-2.2 Trobareu un yaml i copiareu la primera url que hi ha després de la variable "KC_HOSTNAME_ADMIN".
-
-**3. Trobar les credencials d'accés**
-
-3.1 Entrar a openbao
-
-3.2 Common01 --> <nom-del-namespace-de-l'agent>-keycloak
-
-3.3 El nom de l'usuari és el que apareix a la columna "key" i la contrasenya a la columna "value"
-
-**4. Canviar la contrasenya de l'usuari**
-
-4.1 Canviar el realm "keycloak" per "participant" tal com es mostra a la següent imatge:
+### 2.2 Seleccionar el realm "participant"
+- Al menú desplegable de l'esquerra (on posa "Keycloak"), seleccionar **participant**
 
 ![Canvi de realm a participant](imatges/participant.png)
 
-4.2 Anar a la secció "users" --> seleccionar un usuari --> anar a "credentials" --> "reset password" tal com es mostra a la següent imatge:
+### 2.3 Anar a Users i triar l'usuari
+- Al menú lateral, anar a **Users**
+- Fer clic sobre l'usuari al qual es vol canviar la contrasenya
+
+### 2.4 Restablir la contrasenya
+- Anar a la pestanya **Credentials**
+- Fer clic a **Reset password**
+- Introduir la nova contrasenya i confirmar-la
+- **Nota**: Veureu un camp "Temporary", aquest si es desactiva no es podrà tornar a canviar la contrasenya
+- Fer clic a **Reset password**
 
 ![Reset de contrasenya d'usuari](imatges/user-credentials.png)
