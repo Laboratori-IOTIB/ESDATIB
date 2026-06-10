@@ -79,7 +79,7 @@ Accedeix al portal del participant (emplenant amb el teu domini host propi):
 
 Omple els camps amb la informació pròpia de l’agent:
 
-- **Common Name**: T2 endpoint del participant  
+- **Common Name**: T2 endpoint del participant : tls.participant.<participant-frontend> 
 - **Organization**: Nom de l’entitat  
 - **Organization Unit**: Nom del grup dins l’entitat  
 - **Country**: Codi del país de pertinença
