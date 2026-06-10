@@ -79,7 +79,7 @@ Accedeix al portal del participant (emplenant amb el teu domini host propi):
 
 Omple els camps amb la informació pròpia de l’agent:
 
-- **Common Name**: T2 endpoint del participant : `tls.participant.<participant-frontend>` 
+- **Common Name**: T2 endpoint del participant : `tls.participant.<participant-frontend>` Exemple tls.dataprovider01.domain.com
 - **Organization**: Nom de l’entitat  
 - **Organization Unit**: Nom del grup dins l’entitat  
 - **Country**: Codi del país de pertinença
@@ -105,7 +105,7 @@ Automàticament es generarà un arxiu `certificate.pem` que serà necessari per 
 
 Torna al portal del participant (emplenant amb el teu domini host propi):  
 `https://<participant-frontend>/participant-utility/agent-configuration`
-Exemple tls.dataprovider01.domain.com
+
 
 **Usuari Predefinit**: a.w
 
