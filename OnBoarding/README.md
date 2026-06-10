@@ -105,6 +105,7 @@ Automàticament es generarà un arxiu `certificate.pem` que serà necessari per 
 
 Torna al portal del participant (emplenant amb el teu domini host propi):  
 `https://<participant-frontend>/participant-utility/agent-configuration`
+Exemple tls.dataprovider01.domain.com
 
 **Usuari Predefinit**: a.w
 
